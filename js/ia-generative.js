@@ -30,12 +30,12 @@ function init(root){
       g.addEventListener('click',ev=>{ev.stopPropagation();pick(d.id,true)});g.addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();pick(d.id,true)}});return g});
     requestAnimationFrame(()=>nds.forEach(g=>{const t=g.querySelector('.lb'),b=t.getBBox();const r=el('rect',{x:b.x-10,y:b.y-5,width:b.width+20,height:b.height+10,rx:(b.height+10)/2,class:'pill'});g.insertBefore(r,t)}));
     apply();}
-  const keep=d=>f==='all'||(f==='new'?d.new:d.lvl===+f);
+  const keep=d=>f==='all'||(f==='new'?d.new:f.split('-').includes(String(d.lvl)));
   function apply(){svg.classList.toggle('sel',!!cur);const near=new Set();
     eds.forEach(p=>{const on=p.dataset.a===cur||p.dataset.b===cur;p.classList.toggle('on',on);p.classList.toggle('off',!(keep(BYID[p.dataset.a])&&keep(BYID[p.dataset.b])));if(on){near.add(p.dataset.a);near.add(p.dataset.b)}});
     nds.forEach(g=>{const d=BYID[g.dataset.id],on=d.id===cur;g.classList.toggle('on',on);g.classList.toggle('near',!on&&near.has(d.id));g.classList.toggle('off',!keep(d));g.setAttribute('aria-pressed',String(on))});
     svg.querySelectorAll('[data-l]').forEach(x=>x.classList.toggle('hl',f===x.dataset.l));
-    fl.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.f===f)));
+    fl.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.f===f||(f!=='all'&&f!=='new'&&f.split('-').includes(b.dataset.f)))));
     root.querySelectorAll('.fi').forEach(p=>p.hidden=p.dataset.id!==cur);}
   function showFiche(scroll){fis.hidden=false;apply();if(scroll){const r=fis.getBoundingClientRect();if(r.top>innerHeight*.7||r.top<0)fis.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'})}}
   function openPop(id){const tpl=root.querySelector(`template[data-pop="${id}"]`);pop.querySelector('.pop-in').innerHTML=tpl.innerHTML;pop.querySelector('h3').id='pop-h';pop.hidden=false;
@@ -46,6 +46,7 @@ function init(root){
   function pick(id,user){const d=BYID[id];if(!keep(d))f=String(d.lvl);cur=id;apply();
     if(mode==='below'){if(user)showFiche(true)}else{openPop(id);if(!fis.hidden)apply()}}
   fl.forEach(b=>b.addEventListener('click',()=>{f=b.dataset.f;if(cur&&!keep(BYID[cur])){if(mode==='below')cur=DATA.find(keep).id;else{cur=null;closePop()}}apply()}));
+  {const m=location.hash.match(/^#niveau-([1-3](?:-[1-3])*)$/);if(m&&mode!=='below'){f=m[1];setTimeout(()=>{const c=document.getElementById('carte');if(c)c.scrollIntoView()},80)}}
   root.querySelectorAll('.rel').forEach(b=>b.addEventListener('click',()=>{pick(b.dataset.go);if(mode==='popover'){closePop();showFiche(false)}}));
   if(pop){pop.querySelector('.pop-x').addEventListener('click',closePop);pop.querySelector('.pop-more').addEventListener('click',()=>{closePop();showFiche(true)});
     document.addEventListener('keydown',ev=>{if(ev.key==='Escape')closePop()});box.addEventListener('click',ev=>{if(!pop.contains(ev.target))closePop()});}
@@ -72,3 +73,11 @@ window.mapSel=id=>{const r=document.querySelector('.cmap');if(r&&r._pick)r._pick
 function go(n){i=(n+6)%6;ns.forEach((g,k)=>{g.classList.toggle('on',k===i);g.setAttribute('aria-pressed',String(k===i))});ds.forEach((d,k)=>d.hidden=k!==i)}
 ns.forEach((g,k)=>{g.addEventListener('click',()=>go(k));g.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();go(k)}})});
 document.querySelector('.prev').addEventListener('click',()=>go(i-1));document.querySelector('.next').addEventListener('click',()=>go(i+1));go(0)})();
+
+/* Cadre : auto-diagnostic */
+(function(){const cs=[...document.querySelectorAll('.dg')],v={},fg=document.querySelector('.g-fg'),sc=document.getElementById('sc'),m=document.getElementById('scm'),a=document.getElementById('sca');
+function upd(){const n=Object.keys(v).length,pts=Object.values(v).reduce((s,x)=>s+x,0),ok=Object.values(v).filter(x=>x===2).length;
+ sc.textContent=ok;a.textContent=n;fg.setAttribute('stroke-dasharray',(pts/20*100)+' 100');fg.style.opacity=pts?1:0;
+ m.textContent=n<10?'Répondez aux questions pour situer votre équipe.':pts>=17?'Belle maturité : il reste à le tenir dans la durée.':pts>=10?'Les bases sont là. Quelques chantiers à prioriser.':'Il y a du travail, et c’est le bon moment pour s’y mettre.'}
+cs.forEach((c,k)=>c.querySelectorAll('.dg-c button').forEach(b=>b.addEventListener('click',()=>{v[k]=+b.dataset.v;c.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));c.className='dg v'+b.dataset.v;upd()})));
+document.querySelector('.reset').addEventListener('click',()=>{for(const k in v)delete v[k];cs.forEach(c=>{c.className='dg';c.querySelectorAll('button').forEach(x=>x.removeAttribute('aria-pressed'))});upd()});upd()})();

@@ -326,3 +326,6 @@
         grid-template-columns: 1fr;
         gap: 32px;
     }}
+/* Toute la carte mène à la page d'expertise correspondante */
+.legacy .formation-card .formation-link::after{content:"";position:absolute;inset:0;z-index:1}
+.legacy .formation-card{cursor:pointer}
