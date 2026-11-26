@@ -114,108 +114,7 @@
 }
 
 
-/* ====================== SOMMAIRE STICKY VERTICAL ====================== */
-.sticky-toc {
-    position: fixed;
-    left: 24px;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 50;
-    padding: 18px 16px;
-    background-color: rgba(10, 14, 39, 0.7);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid var(--border-soft);
-    border-radius: var(--radius-md);
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.4s ease, visibility 0.4s ease;
-    pointer-events: none;
-}
-
-[data-theme="light"] .sticky-toc {
-    background-color: rgba(255, 255, 255, 0.85);
-}
-
-.sticky-toc.is-visible {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-}
-
-.sticky-toc-label {
-    font-family: var(--font-mono);
-    font-size: 9px;
-    letter-spacing: 2px;
-    color: var(--text-muted);
-    margin-bottom: 12px;
-    text-transform: uppercase;
-}
-
-.sticky-toc-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-
-.sticky-toc-list a {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 6px 4px;
-    font-size: 12.5px;
-    color: var(--text-secondary);
-    transition: color var(--transition);
-    cursor: pointer;
-}
-
-.sticky-toc-list a:hover {
-    color: var(--text-primary);
-}
-
-.sticky-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background-color: var(--text-muted);
-    flex-shrink: 0;
-    transition: all var(--transition);
-}
-
-.sticky-num {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 1px;
-    color: var(--text-muted);
-    min-width: 18px;
-}
-
-.sticky-text {
-    font-weight: 400;
-}
-
-.sticky-toc-list a.is-active {
-    color: var(--cyan);
-}
-
-.sticky-toc-list a.is-active .sticky-dot {
-    background-color: var(--cyan);
-    box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.2);
-}
-
-.sticky-toc-list a.is-active .sticky-num,
-.sticky-toc-list a.is-active .sticky-text {
-    color: var(--cyan);
-}
-
-@media (max-width: 1300px) {
-    .sticky-toc {
-        display: none;
-    }
-}
+/* Styles du sommaire sticky vertical : voir css/sticky-toc.css (composant partagé) */
 
 
 /* ====================== STRUCTURE GÉNÉRIQUE DES SECTIONS ====================== */
@@ -907,12 +806,85 @@
     margin: 0;
 }
 
-@media (max-width: 900px) {
-    .agents-grid { grid-template-columns: repeat(2, 1fr); }
+/* ====================== CAROUSEL AGENTS ====================== */
+.agents-carousel-wrapper {
+    margin-bottom: 40px;
 }
 
-@media (max-width: 540px) {
-    .agents-grid { grid-template-columns: 1fr; }
+.agents-carousel-viewport {
+    overflow: hidden;
+    border-radius: var(--radius-md);
+}
+
+.agents-carousel-track {
+    display: flex;
+    gap: 14px;
+    transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+}
+
+.agents-carousel-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 20px;
+}
+
+.carousel-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid var(--border-medium);
+    background: var(--bg-card);
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition);
+    font-family: inherit;
+    flex-shrink: 0;
+}
+
+.carousel-btn:hover:not(:disabled) {
+    border-color: var(--cyan);
+    color: var(--cyan);
+    box-shadow: 0 0 0 1px var(--cyan), 0 0 12px rgba(6, 182, 212, 0.2);
+}
+
+.carousel-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.carousel-btn svg {
+    width: 18px;
+    height: 18px;
+}
+
+.carousel-dots {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.carousel-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--border-medium);
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: all 0.3s ease;
+}
+
+.carousel-dot.is-active {
+    background: var(--cyan);
+    width: 22px;
+    border-radius: 4px;
+    box-shadow: 0 0 8px rgba(6, 182, 212, 0.5);
 }
 
 .benefits-row {
@@ -1008,43 +980,106 @@
 
 
 /* ════════════════════════════════════════
-   DESKTOP — ligne horizontale (Option A)
-   6 cercles alignés, reliés par un trait dégradé,
-   contenu sous chaque cercle
+   DESKTOP — frise horizontale alternée
+   Ligne chronologique centrale (dégradé violet→cyan),
+   6 pastilles alignées, encarts alternés au-dessus/en-dessous,
+   progression de couleur des pastilles le long de la ligne
    ════════════════════════════════════════ */
 @media (min-width: 900px) {
     .cycle {
         display: grid;
         grid-template-columns: repeat(6, 1fr);
+        align-items: center;
         gap: 0;
-        padding: 0 24px;
-        margin-top: 12px;
+        padding: 0 12px;
+        margin: 12px auto 0;
+        max-width: 980px;
+        min-height: 440px;
     }
 
-    /* Trait dégradé qui passe par le centre des cercles */
+    /* Ligne chronologique horizontale au centre */
     .cycle::before {
         content: "";
         position: absolute;
-        top: 28px; /* centre du cercle de 56px */
-        left: calc(100% / 12 + 24px);
-        right: calc(100% / 12 + 24px);
+        top: 50%;
+        left: calc(100% / 12 + 12px);
+        right: calc(100% / 12 + 12px);
         height: 2px;
+        transform: translateY(-50%);
         background: linear-gradient(90deg, var(--violet) 0%, var(--cyan) 100%);
         z-index: 0;
     }
 
     .cycle-step {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        padding: 0 12px;
         position: relative;
+        height: 440px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         z-index: 1;
     }
 
+    /* Pastille centrée sur la ligne */
     .cycle-circle {
-        margin-bottom: 18px;
+        width: 46px;
+        height: 46px;
+        position: relative;
+        z-index: 2;
+    }
+    .cycle-num { font-size: 14px; }
+
+    /* Encart en carte, positionné en absolu par rapport à l'étape */
+    .cycle-content {
+        position: absolute;
+        left: 6px;
+        right: 6px;
+        background: var(--bg-card);
+        border: 1px solid var(--border-soft);
+        border-radius: var(--radius-md);
+        padding: 12px 14px;
+        text-align: center;
+        transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+    }
+
+    /* Étapes impaires (1,3,5) : encart AU-DESSUS de la ligne */
+    .cycle-step:nth-child(odd) .cycle-content {
+        bottom: calc(50% + 36px);
+    }
+    /* Étapes paires (2,4,6) : encart EN-DESSOUS de la ligne */
+    .cycle-step:nth-child(even) .cycle-content {
+        top: calc(50% + 36px);
+    }
+
+    /* Petit trait de liaison entre la pastille et l'encart */
+    .cycle-step:nth-child(odd) .cycle-content::after,
+    .cycle-step:nth-child(even) .cycle-content::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        width: 1px;
+        height: 24px;
+        background: var(--border-medium);
+        transform: translateX(-50%);
+    }
+    .cycle-step:nth-child(odd) .cycle-content::after { bottom: -24px; }
+    .cycle-step:nth-child(even) .cycle-content::after { top: -24px; }
+
+    /* Progression de couleur des pastilles (violet → cyan) */
+    .cycle-step:nth-child(1) .cycle-circle { background: #7C3AED; box-shadow: 0 0 0 4px var(--bg-primary), 0 0 16px rgba(124,58,237,0.4); }
+    .cycle-step:nth-child(2) .cycle-circle { background: #6E5AD8; box-shadow: 0 0 0 4px var(--bg-primary), 0 0 16px rgba(110,90,216,0.4); }
+    .cycle-step:nth-child(3) .cycle-circle { background: #4F78D4; box-shadow: 0 0 0 4px var(--bg-primary), 0 0 16px rgba(79,120,212,0.4); }
+    .cycle-step:nth-child(4) .cycle-circle { background: #2C97D3; box-shadow: 0 0 0 4px var(--bg-primary), 0 0 16px rgba(44,151,211,0.4); }
+    .cycle-step:nth-child(5) .cycle-circle { background: #14ADCB; box-shadow: 0 0 0 4px var(--bg-primary), 0 0 16px rgba(20,173,203,0.4); }
+    .cycle-step:nth-child(6) .cycle-circle { background: #06B6D4; box-shadow: 0 0 0 4px var(--bg-primary), 0 0 16px rgba(6,182,212,0.45); }
+
+    /* Effet néon cyan au survol */
+    .cycle-step:hover .cycle-content {
+        border-color: var(--cyan);
+        box-shadow: var(--module-hover-shadow);
+        transform: translateY(-2px);
+    }
+    .cycle-step:hover .cycle-circle {
+        transform: scale(1.12);
     }
 
     .cycle-content h3 {
@@ -1052,15 +1087,15 @@
         font-size: 14px;
         font-weight: 500;
         color: var(--text-primary);
-        margin-bottom: 6px;
+        margin-bottom: 4px;
         letter-spacing: -0.2px;
         line-height: 1.3;
     }
 
     .cycle-content p {
-        font-size: 12.5px;
+        font-size: 12px;
         color: var(--text-secondary);
-        line-height: 1.55;
+        line-height: 1.5;
         margin: 0;
     }
 }
