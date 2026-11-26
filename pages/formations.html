@@ -1,63 +1,36 @@
 <!DOCTYPE html>
 <html lang="fr" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formations — Margot Libralato</title>
-    <meta name="description" content="Catalogue de formations d'une journée : IA générative, agentique, biais cognitifs, agilité — par Margot Libralato.">
-
-    <script>
-        (function() {
-            const saved = localStorage.getItem('theme');
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            const theme = saved || (prefersDark ? 'dark' : 'light');
-            document.documentElement.setAttribute('data-theme', theme);
-        })();
-    </script>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-
-    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
-
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/formations.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Formations · Margot Libralato</title>
+<meta name="description" content="Quatre formations d'une journée sur l'IA générative, l'agentique, les biais cognitifs et l'agilité, et des formations sur mesure.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<link rel="stylesheet" href="../css/legacy.css">
+<link rel="stylesheet" href="../css/formations.css">
+<link rel="stylesheet" href="../css/charte.css">
+<script src="../js/site.js" defer></script>
+<script src="../js/accueil.js" defer></script>
 </head>
 <body>
+<a class="skip" href="#main">Aller au contenu</a>
+<header class="site-header">
+  <div class="wrap hd">
+    <a class="logo" href="../index.html"><span class="logo-mark"><svg class="ico" style="width:18px;height:18px" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/><path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"/><path d="M12 5v13"/></svg></span>Margot Libralato</a>
+    <nav class="nav" id="nav" aria-label="Navigation principale"><ul><li><a href="../index.html#offre">Offre</a></li><li><a href="../pages/formations.html" aria-current="page">Formations</a></li><li><a href="../index.html#expertises">Expertises</a></li><li><a href="../pages/ressources.html">Ressources</a></li><li><a href="../pages/cv.html">À propos</a></li></ul><a class="btn btn-grad nav-cta" href="../pages/contact.html">Réserver un échange</a></nav>
+    <a class="btn btn-grad btn-cta" href="../pages/contact.html">Réserver un échange</a>
+    <button class="menu-btn" type="button" aria-controls="nav" aria-expanded="false" aria-label="Ouvrir le menu"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</header>
+<main id="main" class="legacy">
 
-    <!-- ====================== HEADER ====================== -->
-    <header class="header">
-        <div class="container header-inner">
-            <a href="../index.html" class="logo">
-                <span class="logo-mark"><i data-lucide="brain"></i></span>
-                <span class="logo-text">Margot Libralato</span>
-            </a>
-
-            <nav class="nav">
-                <a href="../index.html#about">À propos</a>
-                <a href="../index.html#expertises">Expertises</a>
-                <a href="cv-timeline.html">CV &amp; Parcours</a>
-                <a href="formations.html">Formations</a>
-                <a href="../index.html#contact" class="btn-outline">Contact</a>
-            </nav>
-
-            <div class="header-actions">
-                <button class="theme-toggle" aria-label="Changer de thème" title="Changer de thème">
-                    <i data-lucide="sun" class="icon-sun"></i>
-                    <i data-lucide="moon" class="icon-moon"></i>
-                </button>
-
-                <button class="menu-toggle" aria-label="Ouvrir le menu">
-                    <i data-lucide="menu"></i>
-                </button>
-            </div>
-        </div>
-    </header>
 
     <!-- ====================== HERO PAGE FORMATIONS ====================== -->
     <section class="formations-hero">
-        <canvas id="hero-canvas" class="hero-bg" aria-hidden="true"></canvas>
+        <canvas id="net" class="hero-bg" aria-hidden="true"></canvas>
 
         <div class="container formations-hero-content">
             <div class="badge">
@@ -92,7 +65,7 @@
             <div class="formations-grid">
 
                 <!-- ======== Formation 01 ======== -->
-                <article class="formation-card" data-color="cyan">
+                <article id="f01" class="formation-card" data-color="cyan">
                     <div class="formation-card-head">
                         <div class="formation-icon"><i data-lucide="sparkles"></i></div>
                         <div class="formation-meta">
@@ -123,14 +96,14 @@
 
                     <div class="formation-footer">
                         <span class="formation-price">// SUR DEVIS</span>
-                        <a href="../index.html#contact" class="formation-link">
+                        <a href="contact.html" class="formation-link">
                             En savoir plus <i data-lucide="arrow-right"></i>
                         </a>
                     </div>
                 </article>
 
                 <!-- ======== Formation 02 ======== -->
-                <article class="formation-card" data-color="violet">
+                <article id="f02" class="formation-card" data-color="violet">
                     <div class="formation-card-head">
                         <div class="formation-icon"><i data-lucide="bot"></i></div>
                         <div class="formation-meta">
@@ -161,14 +134,14 @@
 
                     <div class="formation-footer">
                         <span class="formation-price">// SUR DEVIS</span>
-                        <a href="../index.html#contact" class="formation-link">
+                        <a href="contact.html" class="formation-link">
                             En savoir plus <i data-lucide="arrow-right"></i>
                         </a>
                     </div>
                 </article>
 
                 <!-- ======== Formation 03 ======== -->
-                <article class="formation-card" data-color="magenta">
+                <article id="f03" class="formation-card" data-color="magenta">
                     <div class="formation-card-head">
                         <div class="formation-icon"><i data-lucide="brain-circuit"></i></div>
                         <div class="formation-meta">
@@ -199,14 +172,14 @@
 
                     <div class="formation-footer">
                         <span class="formation-price">// SUR DEVIS</span>
-                        <a href="../index.html#contact" class="formation-link">
+                        <a href="contact.html" class="formation-link">
                             En savoir plus <i data-lucide="arrow-right"></i>
                         </a>
                     </div>
                 </article>
 
                 <!-- ======== Formation 04 ======== -->
-                <article class="formation-card" data-color="gradient">
+                <article id="f04" class="formation-card" data-color="gradient">
                     <div class="formation-card-head">
                         <div class="formation-icon"><i data-lucide="git-branch"></i></div>
                         <div class="formation-meta">
@@ -215,17 +188,18 @@
                         </div>
                     </div>
 
-                    <h3 class="formation-title">Agilité à l'échelle</h3>
+                    <h3 class="formation-title">Agilité à l'échelle à l'ère de l'IA</h3>
                     <p class="formation-pitch">
-                        Au-delà des buzzwords : comprenez les principes de l'agilité, choisissez le bon framework, et adaptez-le à la réalité de votre contexte.
+                        Comprendre les principes agiles : Scrum, Kanban, SAFe. Comment les adapter à son contexte ? Que devient une organisation SAFe à l'ère de l'IA ?
                     </p>
 
                     <p class="formation-section-label">// AU PROGRAMME</p>
                     <ul class="formation-program">
                         <li>Principes de l'agilité : ce que dit (vraiment) le manifeste</li>
-                        <li>Tour d'horizon des frameworks : Scrum, Kanban, SAFe, LeSS</li>
+                        <li>Tour d'horizon des frameworks : Scrum, Kanban, SAFe</li>
                         <li>Choisir et combiner : critères de décision selon le contexte</li>
                         <li>Rituels, rôles, artefacts : ce qui marche, ce qui freine</li>
+                        <li>SAFe à l'ère de l'IA : rôles, trains et cérémonies face aux agents et à l'IA générative</li>
                         <li>Atelier : adapter un framework à votre organisation</li>
                     </ul>
 
@@ -237,7 +211,7 @@
 
                     <div class="formation-footer">
                         <span class="formation-price">// SUR DEVIS</span>
-                        <a href="../index.html#contact" class="formation-link">
+                        <a href="contact.html" class="formation-link">
                             En savoir plus <i data-lucide="arrow-right"></i>
                         </a>
                     </div>
@@ -256,7 +230,7 @@
                 <p>
                     Format hybride, contenus métier, durée adaptée, accompagnement post-formation — chaque organisation a ses contraintes. Discutons de votre contexte pour concevoir un programme qui colle à vos enjeux.
                 </p>
-                <a href="../index.html#contact" class="btn-primary">
+                <a href="contact.html" class="btn-primary">
                     Échanger sur votre projet
                     <i data-lucide="arrow-right"></i>
                 </a>
@@ -302,25 +276,18 @@
     </section>
 
     <!-- ====================== FOOTER ====================== -->
-    <footer class="footer">
-        <div class="container footer-inner">
-            <div class="footer-left">
-                <div class="footer-logo"></div>
-                <span class="footer-name">Margot Libralato</span>
-                <span class="footer-copy">© 2026 — Mentions légales</span>
-            </div>
-            <div class="footer-right">
-                <a href="https://linkedin.com" class="social-icon" aria-label="LinkedIn" target="_blank" rel="noopener">
-                    <i data-lucide="linkedin"></i>
-                </a>
-                <a href="mailto:contact@prenom-nom.fr" class="social-icon" aria-label="Email">
-                    <i data-lucide="mail"></i>
-                </a>
-            </div>
-        </div>
-    </footer>
+    
+</main>
+<footer class="site-footer"><div class="wrap">
+  <span>© <span data-year>2026</span> Margot Libralato</span>
+  <nav aria-label="Pied de page"><a href="../pages/cv.html">Parcours et CV</a><a href="../pages/formations.html">Formations</a><a href="../pages/contact.html">Contact</a><a href="https://www.linkedin.com/in/margot-libralato" rel="noopener">LinkedIn</a></nav>
+  <span class="mail">libralato.margot@gmail.com</span>
+</div></footer>
 
-    <script src="../js/script.js"></script>
-    <script src="../js/main.js"></script>
+
+    
+    
+
+<script>if(window.lucide)lucide.createIcons();</script>
 </body>
 </html>

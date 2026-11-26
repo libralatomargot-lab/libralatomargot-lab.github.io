@@ -1,0 +1,90 @@
+/* =====================================================================
+   Charte NEURO-TECH · socle commun à toutes les pages
+   Thème sombre (site vitrine). Couleurs vives : 3 max par écran,
+   magenta réservé à l'emphase. Textes sur indigo : versions claires
+   (--inv-*) pour tenir le contraste WCAG AA.
+   ===================================================================== */
+:root{
+  /* Couleurs de la charte */
+  --indigo:#0A0E27; --indigo-2:#11163A; --indigo-3:#181E4A;
+  --violet:#7C3AED; --cyan:#06B6D4; --magenta:#EC4899; --blanc:#F8FAFC;
+  /* Textes sur fond sombre */
+  --txt-2:#CBD5E1; --gris-clair:#94A3B8;
+  --inv-cyan:#67E8F9; --inv-violet:#C4B5FD; --inv-magenta:#F9A8D4;
+  /* Textes sur fond clair (sections claires) */
+  --ardoise-p:#475569; --txt-cyan:#0E7490;
+  /* Filets et dégradé signature */
+  --line:rgba(255,255,255,.08); --line-2:rgba(255,255,255,.16);
+  --grad:linear-gradient(135deg,#7C3AED 0%,#06B6D4 100%);
+  /* Typographies */
+  --f-title:"Space Grotesk",system-ui,sans-serif;
+  --f-body:"Inter",system-ui,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,monospace;
+  /* Hauteur de l'en-tête (sert aux éléments collants) */
+  --hd-h:68px;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--indigo);color:var(--blanc);font:400 16px/1.65 var(--f-body);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img{max-width:100%;display:block}
+p{margin:0}
+.wrap{max-width:1160px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+h1,h2,h3,h4{font-family:var(--f-title);font-weight:500;text-wrap:balance;margin:0}
+h1{font-size:clamp(2.2rem,5vw,3.5rem);line-height:1.08;letter-spacing:-.5px}
+h2{font-size:clamp(1.7rem,3vw,2rem);line-height:1.2;letter-spacing:-.5px}
+h3{font-size:1.25rem;line-height:1.3}
+.label{font:500 12px/1.2 var(--f-mono);letter-spacing:2px;text-transform:uppercase;color:var(--inv-cyan)}
+.muted{color:var(--txt-2)}
+.grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:2px solid var(--inv-cyan);outline-offset:3px;border-radius:4px}
+.skip{position:absolute;left:-999px;top:12px;z-index:20;background:var(--indigo-2);padding:.6rem 1rem;border-radius:8px}
+.skip:focus{left:16px}
+
+/* Boutons */
+.btn{display:inline-flex;align-items:center;gap:.5rem;min-height:48px;padding:0 1.4rem;border-radius:8px;font:500 15px var(--f-body);text-decoration:none;cursor:pointer;border:0;transition:box-shadow .3s,border-color .3s}
+.btn-grad{background:var(--grad);color:#fff}
+.btn-grad:hover{box-shadow:0 0 24px rgba(6,182,212,.35)}
+.btn-line{border:1px solid var(--cyan);color:var(--blanc);background:transparent}
+.btn-line:hover{box-shadow:0 0 0 1px var(--cyan),0 0 20px rgba(6,182,212,.3)}
+.ico{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.chip{display:inline-flex;align-items:center;font:500 12px/1 var(--f-mono);letter-spacing:.5px;padding:.4rem .6rem;border-radius:6px;border:1px solid var(--line-2);color:var(--txt-2)}
+
+/* En-tête et navigation */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--indigo)}
+.site-header{position:sticky;top:env(safe-area-inset-top,0px);z-index:8;background:rgba(10,14,39,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.hd{display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:var(--hd-h)}
+.logo{display:flex;align-items:center;gap:.6rem;font:600 17px var(--f-title);text-decoration:none}
+.logo-mark{width:34px;height:34px;border-radius:8px;background:var(--grad);display:grid;place-items:center;color:#fff}
+.nav ul{display:flex;gap:1.6rem;list-style:none;margin:0;padding:0;font-size:15px;color:var(--txt-2)}
+.nav a{text-decoration:none;padding-block:.4rem;border-bottom:2px solid transparent}
+.nav a:hover{color:var(--inv-cyan)}
+.nav a[aria-current="page"]{color:var(--blanc);border-color:var(--cyan)}
+.hd .btn{min-height:42px;font-size:14px}
+.menu-btn{display:none;width:44px;height:44px;border-radius:8px;border:1px solid var(--line-2);background:transparent;color:var(--blanc);cursor:pointer;place-items:center}
+@media (max-width:900px){
+  .menu-btn{display:grid}
+  .hd .btn-cta{display:none}
+  .nav{position:fixed;inset:calc(env(safe-area-inset-top,0px) + var(--hd-h)) 0 auto 0;background:var(--indigo);border-bottom:1px solid var(--line);padding:1rem max(20px,env(safe-area-inset-right,0px)) 1.6rem max(20px,env(safe-area-inset-left,0px));display:none}
+  .nav.open{display:block}
+  .nav ul{flex-direction:column;gap:.2rem;font-size:17px}
+  .nav a{display:block;padding:.7rem 0;border:0}
+  .nav .btn{display:flex;margin-top:1rem;width:100%;justify-content:center}
+}
+@media (min-width:901px){.nav .nav-cta{display:none}}
+
+/* Pied de page */
+.site-footer{border-top:1px solid var(--line);padding-block:2.2rem;font-size:14px;color:var(--gris-clair)}
+.site-footer .wrap{display:flex;flex-wrap:wrap;gap:1rem 2rem;justify-content:space-between;align-items:center}
+.site-footer nav{display:flex;flex-wrap:wrap;gap:.4rem 1.2rem}
+.site-footer a{text-decoration:none}
+.site-footer a:hover{color:var(--inv-cyan)}
+.mail{font-family:var(--f-mono);color:var(--blanc);user-select:all}
+
+/* Projecteur qui suit la souris sur les cartes (renseigné par site.js) */
+.spot{background-image:radial-gradient(420px circle at var(--mx,-999px) var(--my,-999px),rgba(124,58,237,.16),transparent 45%)}
+
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}html{scroll-behavior:auto}}

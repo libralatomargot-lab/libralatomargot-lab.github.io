@@ -1,234 +1,128 @@
 <!DOCTYPE html>
-<html lang="fr" data-theme="dark">
+<html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Margot Libralato — Consultante IA & Agentique</title>
-    <meta name="description" content="Docteure en neurosciences, Ingénieure en IA. Formations, ateliers et accompagnement en IA générative et agentique pour les entreprises.">
-
-    <!-- Anti-flash : applique le bon thème AVANT le rendu de la page
-         (sinon l'utilisateur verrait une fraction de seconde le mauvais mode au chargement) -->
-    <script>
-        (function() {
-            const saved = localStorage.getItem('theme');
-            const theme = saved || 'dark';
-            document.documentElement.setAttribute('data-theme', theme);
-        })();
-    </script>
-
-    <!-- Google Fonts : Space Grotesk (titres), Inter (corps), JetBrains Mono (accents) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-
-    <!-- Icônes Lucide (gratuit, outline) -->
-    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
-
-    <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Margot Libralato · IA générative, agentique et neurosciences</title>
+<meta name="description" content="Docteure en neurosciences et ingénieure IA : formations, conseil et développement d'agents IA pour les entreprises.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="css/charte.css">
+<link rel="stylesheet" href="css/accueil.css">
+<script src="js/site.js" defer></script>
+<script src="js/accueil.js" defer></script>
 </head>
 <body>
+<a class="skip" href="#main">Aller au contenu</a>
+<header class="site-header">
+  <div class="wrap hd">
+    <a class="logo" href="index.html"><span class="logo-mark"><svg class="ico" style="width:18px;height:18px" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/><path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"/><path d="M12 5v13"/></svg></span>Margot Libralato</a>
+    <nav class="nav" id="nav" aria-label="Navigation principale"><ul><li><a href="index.html#offre">Offre</a></li><li><a href="pages/formations.html">Formations</a></li><li><a href="index.html#expertises">Expertises</a></li><li><a href="pages/ressources.html">Ressources</a></li><li><a href="pages/cv.html">À propos</a></li></ul><a class="btn btn-grad nav-cta" href="pages/contact.html">Réserver un échange</a></nav>
+    <a class="btn btn-grad btn-cta" href="pages/contact.html">Réserver un échange</a>
+    <button class="menu-btn" type="button" aria-controls="nav" aria-expanded="false" aria-label="Ouvrir le menu"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</header>
 
-    <!-- ====================== HEADER ====================== -->
-    <header class="header">
-        <div class="container header-inner">
-            <a href="#" class="logo">
-                <span class="logo-mark"><i data-lucide="brain"></i></span>
-                <span class="logo-text">Margot Libralato</span>
-            </a>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-brain" viewBox="0 0 24 24"><path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/><path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"/><path d="M12 5v13"/></symbol>
+  <symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m16.24 7.76-2.12 6.36-6.36 2.12 2.12-6.36z"/></symbol>
+  <symbol id="i-cap" viewBox="0 0 24 24"><path d="M22 10 12 5 2 10l10 5 10-5Z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></symbol>
+  <symbol id="i-route" viewBox="0 0 24 24"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></symbol>
+  <symbol id="i-bot" viewBox="0 0 24 24"><path d="M12 8V4H8"/><rect x="4" y="8" width="16" height="12" rx="2"/><path d="M2 14h2M20 14h2M15 13v2M9 13v2"/></symbol>
+</svg>
 
-            <nav class="nav">
-                <a href="pages/cv-timeline.html">Parcours & CV</a>
-                <a href="pages/formations.html">Services</a>
-                <div class="nav-dropdown">
-                    <button type="button" class="nav-dropdown-toggle" aria-haspopup="true" aria-expanded="false">
-                        Expertises
-                        <i data-lucide="chevron-down"></i>
-                    </button>
-                    <div class="nav-dropdown-menu" role="menu">
-                        <a href="pages/ia-generative.html" role="menuitem">Intelligence Artificielle</a>
-                        <a href="pages/neuro-agile.html" role="menuitem">Neurosciences, performance et agilité</a>
-                    </div>
-                </div>
-                <a href="mailto:ml.innovconseil@gmail.com" class="btn-outline">Contact</a>
-            </nav>
+<main id="main">
+<section class="hero" style="padding:0">
+  <canvas id="net" aria-hidden="true"></canvas><span class="hint-net" aria-hidden="true">Survolez le réseau · cliquez pour le stimuler</span>
+  <div class="wrap">
+    <div class="hero-copy">
+      <p class="type"><span class="dot" aria-hidden="true"></span><span aria-hidden="true">Margot Libralato //&nbsp;<b id="typed">Docteure en neurosciences</b><span class="caret"></span></span><span class="sr">Margot Libralato : docteure en neurosciences, ingénieure IA agentique, ingénieure qualité logicielle, formatrice en IA et en intelligence collective.</span></p>
+      <h1>Faites de l'IA un levier <span class="grad-text">concret</span> pour vos équipes.</h1>
+      <p class="lead">Docteure en neurosciences et ingénieure IA, j'aide les entreprises à adopter l'IA générative et à déployer des agents qui tiennent en production, du cadrage à la mise en service.</p>
+      <div class="ctas">
+        <a class="btn btn-grad" href="pages/contact.html">Réserver un échange de 30 min <svg class="ico" style="width:18px;height:18px"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn-line" href="#formations">Voir les formations</a>
+      </div>
+    </div>
+    <figure class="portrait" style="margin:0">
+      <img src="image/portrait.jpg" alt="Portrait de Margot Libralato" width="200" height="200">
+    </figure>
+  </div>
+</section>
 
-            <div class="header-actions">
-                <!-- Toggle mode clair / sombre -->
-                <button class="theme-toggle" aria-label="Changer de thème" title="Changer de thème">
-                    <i data-lucide="sun" class="icon-sun"></i>
-                    <i data-lucide="moon" class="icon-moon"></i>
-                </button>
+<div class="stats" role="list">
+  <div class="stat" role="listitem"><b>+150</b><span>professionnels formés</span></div>
+  <div class="stat" role="listitem"><b>10+</b><span>années en R&amp;D et ingénierie</span></div>
+  <div class="stat" role="listitem"><b>25</b><span>agents IA en production</span></div>
+  <div class="stat" role="listitem"><b>PhD</b><span>doctorat en neurosciences</span></div>
+</div>
 
-                <!-- Menu burger (mobile uniquement) -->
-                <button class="menu-toggle" aria-label="Ouvrir le menu">
-                    <i data-lucide="menu"></i>
-                </button>
-            </div>
-        </div>
-    </header>
+<section id="offre">
+  <div class="wrap">
+    <div class="sec-head"><p class="label">// Offre</p><h2>Quatre façons de travailler ensemble</h2><p>Selon votre maturité, j'interviens sur un point précis ou sur tout le projet.</p></div>
+    <div class="offer">
+      <a class="card" href="pages/contact.html"><svg class="ico"><use href="#i-compass"/></svg><h3>Conseil</h3><p>Cadrer et prioriser vos projets IA, sur le plan stratégique comme technique.</p></a>
+      <a class="card" href="pages/formations.html"><svg class="ico"><use href="#i-cap"/></svg><h3>Formation</h3><p>Des formations sur mesure, adaptées à vos équipes et à vos métiers.</p></a>
+      <a class="card" href="pages/contact.html"><svg class="ico"><use href="#i-route"/></svg><h3>Accompagnement</h3><p>Un appui technique de bout en bout, des ateliers et du coaching pour accélérer l'adoption.</p></a>
+      <a class="card" href="pages/ia-generative.html#agents"><svg class="ico"><use href="#i-bot"/></svg><h3>Développement</h3><p>Des agents et des serveurs MCP sur mesure, déployés en production.</p></a>
+    </div>
+  </div>
+</section>
 
-    <!-- ====================== HERO ====================== -->
-    <section class="hero">
-        <!-- Réseau neuronal animé en arrière-plan (Canvas) -->
-        <canvas id="hero-canvas" class="hero-bg" aria-hidden="true"></canvas>
+<section class="light">
+  <div class="wrap">
+    <div class="sec-head"><p class="label">// Méthode</p><h2>Du premier échange à l'agent en production</h2><p>Un déroulé en trois temps, que l'on peut aussi suivre partiellement.</p></div>
+    <ol class="steps">
+      <li><h3>Cadrer</h3><p>Comprendre votre besoin, puis identification des cas d'usage à forte valeur et des pièges à éviter.</p></li>
+      <li><h3>Former</h3><p>Vos équipes acquièrent les bons réflexes : prompting, confidentialité, limites des modèles, biais de décision.</p></li>
+      <li><h3>Déployer</h3><p>Conception, prototypage et mise en production des agents, avec sécurité, supervision et suivi du retour sur investissement.</p></li>
+    </ol>
+  </div>
+</section>
 
-        <div class="container hero-content">
-            <div class="hero-badge-row">
-                <img src="image/portrait.jpg" alt="Photo de Margot Libralato" class="hero-photo">
-                <div class="badge">
-                    <span class="badge-text">Margot Libralato // </span>
-                    <span id="typewriter" class="badge-text"></span>
-                </div>
-            </div>
-            <h1 class="hero-title">
-                Accélérez grâce à l' <span class="gradient-text">IA générative & agentique</span>
-            </h1>
-            <p class="hero-tagline">De la stratégie au déploiement — des systèmes IA qui fonctionnent vraiment en production.</p>
-            <p class="hero-subtitle">
-                Docteure en neurosciences, Ingénieure qualité et Consultante en solutions IA, j’accompagne les entreprises dans l’adoption de l’IA générative et dans la
-                conception, le développement et le déploiement de solutions IA agentiques sur mesure.
-                Conseil stratégique, formation et développement technique : une approche complète,
-                du cadrage à la mise en production.
-            </p>
-            <div class="hero-cta">
-                <a href="mailto:ml.innovconseil@gmail.com" class="btn-primary">
-                    Parlons de votre projet
-                    <i data-lucide="arrow-right"></i>
-                </a>
-                <a href="pages/formations.html" class="btn-secondary">
-                    Découvrir mes services
-                </a>
-            </div>
-        </div>
-    </section>
+<section id="formations">
+  <div class="wrap">
+    <div class="sec-head"><p class="label">// Catalogue</p><h2>Des formations condensées pour passer à l'action</h2></div>
+    <div class="formats"><span>1 journée · 7 h</span><span>12 participants max</span><span>Présentiel ou distanciel</span><span>Attestation de suivi</span></div>
+    <div class="trainings">
+      <a class="tr" href="pages/formations.html#f01"><div class="tr-top"><span>F.01 · Fondamentaux</span><span>1 jour</span></div><h3>Fondamentaux de l'IA</h3><p>Maîtriser l'IA générative au quotidien avec Copilot et Claude, et formuler des prompts fiables.</p><div class="tags"><span>Débutant</span><span>Tous métiers</span></div></a>
+      <a class="tr" href="pages/formations.html#f02"><div class="tr-top"><span>F.02 · Avancé</span><span>1 jour</span></div><h3>Usages avancés et agentique</h3><p>Identifier un cas d'usage à fort impact, puis concevoir et prototyper un premier agent.</p><div class="tags"><span>Intermédiaire</span><span>Tech / produit</span></div></a>
+      <a class="tr" href="pages/formations.html#f03"><div class="tr-top"><span>F.03 · Soft skills</span><span>1 jour</span></div><h3>L'erreur est humaine</h3><p>Biais cognitifs, intelligence émotionnelle et collective, et résolution de problèmes en design thinking.</p><div class="tags"><span>Tous niveaux</span><span>Managers</span></div></a>
+      <a class="tr" href="pages/formations.html#f04"><div class="tr-top"><span>F.04 · Agilité</span><span>1 jour</span></div><h3>Agilité à l'échelle à l'ère de l'IA</h3><p>Comprendre les principes agiles : Scrum, Kanban, SAFe. Comment l'adapter à son contexte ? Que devient une organisation SAFe à l'ère de l'IA ?</p><div class="tags"><span>Tous niveaux</span><span>Chefs de projet</span></div></a>
+    </div>
+  </div>
+</section>
 
-    <!-- ====================== CHIFFRES CLÉS ====================== -->
-    <section class="stats" id="about">
-        <div class="container stats-grid">
-            <div class="stat">
-                <p class="stat-number" data-count="150" data-prefix="+">+0</p>
-                <p class="stat-label">Professionnels formés</p>
-            </div>
-            <div class="stat">
-                <p class="stat-number" data-count="10" data-suffix="+">0+</p>
-                <p class="stat-label">Années en R&amp;D &amp; ingénierie</p>
-            </div>
-            <div class="stat">
-                <p class="stat-number" data-count="25">0</p>
-                <p class="stat-label">Agents IA en production</p>
-            </div>
-            <div class="stat">
-                <p class="stat-number" data-count="1">0</p>
-                <p class="stat-label">Doctorat en Neurosciences</p>
-            </div>
-        </div>
-    </section>
+<section id="expertises" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head"><p class="label">// Expertises</p><h2>Une double compétence, rare et complémentaire</h2></div>
+    <div class="duo">
+      <a class="ex ia" href="pages/ia-generative.html"><p class="label">IA</p><h3>IA générative et agentique</h3><p>Des premiers usages bureautiques aux agents autonomes en production, à chaque étape de la maturité IA de votre organisation.</p><span class="more">Découvrir <svg class="ico" style="width:18px;height:18px"><use href="#i-arrow"/></svg></span></a>
+      <a class="ex neuro" href="pages/neuro-agile.html"><p class="label" style="color:var(--inv-violet)">Neurosciences</p><h3>Neurosciences et agilité</h3><p>Biais cognitifs, intelligence collective, Scrum et Kanban : la science du comportement au service de vos transformations.</p><span class="more">Découvrir <svg class="ico" style="width:18px;height:18px"><use href="#i-arrow"/></svg></span></a>
+    </div>
+  </div>
+</section>
 
-    <!-- ====================== EXPERTISES ====================== -->
-    <section class="expertises" id="expertises">
-        <div class="container">
-            <p class="section-tag">// EXPERTISES</p>
-            <h2 class="section-title">Quatre piliers, une expertise intégrée.</h2>
-            <p class="section-intro">
-                IA générative, systèmes agentiques, neurosciences comportementales et agilité —
-                une approche transversale pour des transformations ancrées dans la réalité du terrain.
-            </p>
+<section id="ressources" style="padding-top:0">
+  <div class="wrap" style="display:grid;gap:1rem">
+    <div class="quiz"><div><p class="label">// Ressource</p><h3>Quel biais venez-vous de subir&nbsp;?</h3><p>Un quiz de quelques minutes pour repérer les biais cognitifs qui orientent vos décisions.</p></div><a class="btn btn-line" href="pages/quiz-biais-cognitifs.html">Faire le quiz</a></div>
+  </div>
+</section>
 
-            <div class="expertises-layout">
-                <!-- Colonne gauche : Expertises -->
-                <div class="expertises-col">
-                    <h3 class="col-title">Expertises</h3>
-
-                    <a href="pages/ia-generative.html" class="module module-eq" data-color="cyan">
-                        <div class="module-header">
-                            <div class="module-icon"><i data-lucide="bot"></i></div>
-                            <span class="module-number">01</span>
-                        </div>
-                        <h3 class="module-title">IA générative &amp; agentique</h3>
-                        <p class="module-desc">
-                            Des premiers usages bureautiques aux agents autonomes en production —
-                            je vous accompagne à chaque étape de la maturité IA de votre organisation.
-                        </p>
-                        <span class="module-link">Découvrir <i data-lucide="arrow-right"></i></span>
-                    </a>
-
-                    <a href="pages/neuro-agile.html" class="module module-eq" data-color="violet">
-                        <div class="module-header">
-                            <div class="module-icon"><i data-lucide="brain"></i></div>
-                            <span class="module-number">02</span>
-                        </div>
-                        <h3 class="module-title">Neurosciences &amp; agilité</h3>
-                        <p class="module-desc">
-                            Biais cognitifs, intelligence collective, Scrum, Kanban —
-                            mobilisez la science du comportement pour accélérer vos transformations.
-                        </p>
-                        <span class="module-link">Découvrir <i data-lucide="arrow-right"></i></span>
-                    </a>
-                </div>
-
-                <!-- Colonne droite : Services + Parcours -->
-                <div class="expertises-col">
-                    <h3 class="col-title">Services</h3>
-
-                    <a href="pages/formations.html" class="module module-large" data-color="magenta">
-                        <div class="module-header">
-                            <div class="module-icon"><i data-lucide="graduation-cap"></i></div>
-                            <span class="module-number">03</span>
-                        </div>
-                        <h3 class="module-title">Services</h3>
-                        <h4 class="module-subtitle">Conseil · Formation · Accompagnement · Développement</h4>
-                        <ul class="module-services-list">
-                            <li><i data-lucide="compass"></i><span>Conseil stratégique et technique pour cadrer et prioriser vos projets IA</span></li>
-                            <li><i data-lucide="graduation-cap"></i><span>Formations sur mesure adaptées à vos équipes et vos métiers</span></li>
-                            <li><i data-lucide="route"></i><span>Accompagnement technique de bout en bout sur vos projets IA</span></li>
-                            <li><i data-lucide="users"></i><span>Ateliers et coaching pour accélérer l'adoption et la montée en compétences</span></li>
-                            <li><i data-lucide="code-2"></i><span>Développement d'agents et de solutions IA personnalisées, déployées en production</span></li>
-                        </ul>
-                        <span class="module-link">Découvrir <i data-lucide="arrow-right"></i></span>
-                    </a>
-
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ====================== CTA FINAL ====================== -->
-    <section class="cta-section" id="contact">
-        <div class="container cta-inner">
-            <h2 class="cta-title">Un projet IA à concrétiser ?</h2>
-            <p class="cta-subtitle">
-                30 minutes pour cadrer votre besoin et identifier les leviers d'action. Sans engagement.
-            </p>
-            <a href="mailto:ml.innovconseil@gmail.com" class="btn-primary btn-large">
-                Réserver un échange
-                <i data-lucide="arrow-right"></i>
-            </a>
-        </div>
-    </section>
-
-    <!-- ====================== FOOTER ====================== -->
-    <footer class="footer">
-        <div class="container footer-inner">
-            <div class="footer-left">
-                <div class="footer-logo"></div>
-                <span class="footer-name">Margot Libralato</span>
-                <span class="footer-copy">© 2026 — Mentions légales</span>
-            </div>
-            <div class="footer-right">
-                <a href="https://www.linkedin.com/in/margot-libralato" class="social-icon" aria-label="LinkedIn" target="_blank" rel="noopener">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                    </svg>
-                </a>
-                <a href="mailto:ml.innovconseil@gmail.com" class="social-icon" aria-label="Email">
-                    <i data-lucide="mail"></i>
-                </a>
-                <span class="footer-name">ml.innovconseil@gmail.com</span>
-            </div>
-        </div>
-    </footer>
-
-    <script src="js/script.js"></script>
-    <script src="js/main.js"></script>
+<section class="cta" id="contact">
+  <div class="wrap">
+    <h2>Un projet IA à concrétiser&nbsp;?</h2>
+    <p>30 minutes pour cadrer votre besoin et identifier les leviers d'action. Sans engagement.</p>
+    <a class="btn btn-grad" href="pages/contact.html">Réserver un échange <svg class="ico" style="width:18px;height:18px"><use href="#i-arrow"/></svg></a>
+  </div>
+</section>
+</main>
+<footer class="site-footer"><div class="wrap">
+  <span>© <span data-year>2026</span> Margot Libralato</span>
+  <nav aria-label="Pied de page"><a href="pages/cv.html">Parcours et CV</a><a href="pages/formations.html">Formations</a><a href="pages/contact.html">Contact</a><a href="https://www.linkedin.com/in/margot-libralato" rel="noopener">LinkedIn</a></nav>
+  <span class="mail">libralato.margot@gmail.com</span>
+</div></footer>
 </body>
 </html>

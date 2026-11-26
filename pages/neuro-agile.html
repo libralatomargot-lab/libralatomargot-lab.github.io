@@ -1,61 +1,36 @@
 <!DOCTYPE html>
 <html lang="fr" data-theme="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Neurosciences &amp; agilité — Margot Libralato</title>
-    <meta name="description" content="Biais cognitifs, intelligence collective, agilité à l'échelle : la science du comportement au service de la transformation des équipes.">
-
-    <script>
-        (function() {
-            const saved = localStorage.getItem('theme');
-            const theme = saved || 'dark';
-            document.documentElement.setAttribute('data-theme', theme);
-        })();
-    </script>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-
-    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
-
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/neuro-agile.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Neurosciences et agilité · Margot Libralato</title>
+<meta name="description" content="Biais cognitifs, intelligence émotionnelle et collective, agilité à l'échelle : les neurosciences au service des équipes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
+<link rel="stylesheet" href="../css/legacy.css">
+<link rel="stylesheet" href="../css/neuro-agile.css">
+<link rel="stylesheet" href="../css/charte.css">
+<script src="../js/site.js" defer></script>
+<script src="../js/accueil.js" defer></script>
 </head>
 <body>
+<a class="skip" href="#main">Aller au contenu</a>
+<header class="site-header">
+  <div class="wrap hd">
+    <a class="logo" href="../index.html"><span class="logo-mark"><svg class="ico" style="width:18px;height:18px" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/><path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"/><path d="M12 5v13"/></svg></span>Margot Libralato</a>
+    <nav class="nav" id="nav" aria-label="Navigation principale"><ul><li><a href="../index.html#offre">Offre</a></li><li><a href="../pages/formations.html">Formations</a></li><li><a href="../index.html#expertises" aria-current="page">Expertises</a></li><li><a href="../pages/ressources.html">Ressources</a></li><li><a href="../pages/cv.html">À propos</a></li></ul><a class="btn btn-grad nav-cta" href="../pages/contact.html">Réserver un échange</a></nav>
+    <a class="btn btn-grad btn-cta" href="../pages/contact.html">Réserver un échange</a>
+    <button class="menu-btn" type="button" aria-controls="nav" aria-expanded="false" aria-label="Ouvrir le menu"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  </div>
+</header>
+<main id="main" class="legacy">
 
-    <!-- ====================== HEADER ====================== -->
-    <header class="header">
-        <div class="container header-inner">
-            <a href="../index.html" class="logo">
-                <span class="logo-mark"><i data-lucide="brain"></i></span>
-                <span class="logo-text">Margot Libralato</span>
-            </a>
-
-            <nav class="nav">
-                <a href="../index.html#about">À propos</a>
-                <a href="../index.html#expertises">Expertises</a>
-                <a href="cv-timeline.html">CV &amp; Parcours</a>
-                <a href="formations.html">Formations</a>
-                <a href="../index.html#contact" class="btn-outline">Contact</a>
-            </nav>
-
-            <div class="header-actions">
-                <button class="theme-toggle" aria-label="Changer de thème" title="Changer de thème">
-                    <i data-lucide="sun" class="icon-sun"></i>
-                    <i data-lucide="moon" class="icon-moon"></i>
-                </button>
-                <button class="menu-toggle" aria-label="Ouvrir le menu">
-                    <i data-lucide="menu"></i>
-                </button>
-            </div>
-        </div>
-    </header>
 
     <!-- ====================== HERO ====================== -->
     <section class="na-hero">
-        <canvas id="hero-canvas" class="hero-bg" aria-hidden="true"></canvas>
+        <canvas id="net" class="hero-bg" aria-hidden="true"></canvas>
 
         <div class="container na-hero-content">
             <div class="badge">
@@ -466,26 +441,17 @@
     </section>
 
     <!-- ====================== FOOTER ====================== -->
-    <footer class="footer">
-        <div class="container footer-inner">
-            <div class="footer-left">
-                <div class="footer-logo"></div>
-                <span class="footer-name">Margot Libralato</span>
-                <span class="footer-copy">© 2026 — Mentions légales</span>
-            </div>
-            <div class="footer-right">
-                <a href="https://linkedin.com" class="social-icon" aria-label="LinkedIn" target="_blank" rel="noopener">
-                    <i data-lucide="linkedin"></i>
-                </a>
-                <a href="mailto:libralato.margot@gmail.com" class="social-icon" aria-label="Email">
-                    <i data-lucide="mail"></i>
-                </a>
-            </div>
-        </div>
-    </footer>
+    
+</main>
+<footer class="site-footer"><div class="wrap">
+  <span>© <span data-year>2026</span> Margot Libralato</span>
+  <nav aria-label="Pied de page"><a href="../pages/cv.html">Parcours et CV</a><a href="../pages/formations.html">Formations</a><a href="../pages/contact.html">Contact</a><a href="https://www.linkedin.com/in/margot-libralato" rel="noopener">LinkedIn</a></nav>
+  <span class="mail">libralato.margot@gmail.com</span>
+</div></footer>
 
-    <script src="../js/script.js"></script>
-    <script src="../js/main.js"></script>
+
+    
+    
 
     <!-- ===== SCRIPT QUIZ ===== -->
     <script>
@@ -710,5 +676,7 @@
     <script>
         if (window.lucide) { lucide.createIcons(); }
     </script>
+
+<script>if(window.lucide)lucide.createIcons();</script>
 </body>
 </html>
