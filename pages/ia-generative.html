@@ -1,19 +1,18 @@
 <!DOCTYPE html>
-<html lang="fr" data-theme="dark">
+<html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>IA générative et agentique · Margot Libralato</title>
-<meta name="description" content="L'IA générative et agentique expliquée : vocabulaire, outils, prompting, agents et développement de MCP sur mesure.">
+<meta name="description" content="Un agent fiable, c'est une architecture : modèle, contexte, boucle, harnais et budget. Les notions de l'IA générative et agentique, reliées entre elles.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
-<script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js"></script>
-<link rel="stylesheet" href="../css/legacy.css">
-<link rel="stylesheet" href="../css/ia-generative.css">
 <link rel="stylesheet" href="../css/charte.css">
+<link rel="stylesheet" href="../css/ia-generative.css">
 <script src="../js/site.js" defer></script>
 <script src="../js/accueil.js" defer></script>
+<script src="../js/ia-generative.js" defer></script>
 </head>
 <body>
 <a class="skip" href="#main">Aller au contenu</a>
@@ -25,817 +24,288 @@
     <button class="menu-btn" type="button" aria-controls="nav" aria-expanded="false" aria-label="Ouvrir le menu"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
   </div>
 </header>
-<main id="main" class="legacy">
-
-
-    <!-- ====================== HERO PAGE IA ====================== -->
-    <section class="ia-hero">
-        <canvas id="net" class="hero-bg" aria-hidden="true"></canvas>
-
-        <div class="container ia-hero-content">
-            <div class="badge">
-                <span class="badge-dot"></span>
-                <span class="badge-text">// ÉTAT DE L'ART — IA GÉNÉRATIVE &amp; AGENTIQUE</span>
-            </div>
-            <h1>L'IA générative, expliquée <span class="gradient-text">comme je l'aurais voulu</span> quand j'ai commencé.</h1>
-            <p>
-                Un panorama clair et à jour de l'IA générative et agentique, mis à plat pour que vous le compreniez aussi.
-            </p>
-
-            <p class="hero-signature">
-                Par <strong>Margot Libralato</strong> — Docteure en Neurosciences, consultante IA. J'ai étudié comment le cerveau humain traite l'information avant de me consacrer aux machines qui l'imitent. Ce double regard façonne ma manière d'expliquer comme de concevoir.
-            </p>
-
-            <p class="hero-hint"><i data-lucide="mouse-pointer-click"></i> Cliquez sur une section pour la dérouler — lisez dans l'ordre, ou picorez ce qui vous intéresse.</p>
-
-            <nav class="ia-toc" aria-label="Sommaire de la page">
-                <a href="#vocabulaire" class="toc-link" data-target="vocabulaire"><span class="toc-num">01</span> Vocabulaire</a>
-                <a href="#outils" class="toc-link" data-target="outils"><span class="toc-num">02</span> Outils</a>
-                <a href="#prompts" class="toc-link" data-target="prompts"><span class="toc-num">03</span> Prompts</a>
-                <a href="#agents" class="toc-link" data-target="agents"><span class="toc-num">04</span> Agents</a>
-                <a href="#cycle" class="toc-link" data-target="cycle"><span class="toc-num">05</span> Cycle</a>
-                <a href="#mcp" class="toc-link" data-target="mcp"><span class="toc-num">06</span> MCP</a>
-            </nav>
-
-            <p class="hero-levels">
-                <i data-lucide="signpost"></i>
-                <span><strong>Deux niveaux de lecture&nbsp;:</strong> les sections 01 à 03 posent les bases (idéal pour débuter), les sections 04 à 06 entrent dans le concret du déploiement (pour aller plus loin). Aucune connaissance technique requise.</span>
-            </p>
-        </div>
-    </section>
-
-    <!-- ====================== SOMMAIRE STICKY VERTICAL (desktop) ====================== -->
-    <aside class="sticky-toc" aria-label="Sommaire">
-        <p class="sticky-toc-label">// SOMMAIRE</p>
-        <ol class="sticky-toc-list">
-            <li><a href="#vocabulaire" data-target="vocabulaire"><span class="sticky-dot"></span><span class="sticky-num">01</span><span class="sticky-text">Vocabulaire</span></a></li>
-            <li><a href="#outils" data-target="outils"><span class="sticky-dot"></span><span class="sticky-num">02</span><span class="sticky-text">Outils</span></a></li>
-            <li><a href="#prompts" data-target="prompts"><span class="sticky-dot"></span><span class="sticky-num">03</span><span class="sticky-text">Prompts</span></a></li>
-            <li><a href="#agents" data-target="agents"><span class="sticky-dot"></span><span class="sticky-num">04</span><span class="sticky-text">Agents</span></a></li>
-            <li><a href="#cycle" data-target="cycle"><span class="sticky-dot"></span><span class="sticky-num">05</span><span class="sticky-text">Cycle</span></a></li>
-            <li><a href="#mcp" data-target="mcp"><span class="sticky-dot"></span><span class="sticky-num">06</span><span class="sticky-text">MCP</span></a></li>
-        </ol>
-    </aside>
-
-    <!-- ====================== 01 — VOCABULAIRE (FLIP CARDS) ====================== -->
-    <section class="ia-section" id="vocabulaire">
-        <div class="container">
-            <article class="accordion">
-                <button class="accordion-trigger" aria-expanded="false" aria-controls="panel-vocabulaire" id="trigger-vocabulaire">
-                    <div class="accordion-trigger-text">
-                        <p class="section-tag">// 01 — VOCABULAIRE</p>
-                        <h2 class="section-title">Parlez-vous couramment l'IA&nbsp;?</h2>
-                        <p class="section-subtitle">9 mots-clés pour ne plus jamais être perdu·e dans une conversation IA</p>
-                    </div>
-                    <div class="accordion-chevron" aria-hidden="true">
-                        <i data-lucide="chevron-down"></i>
-                    </div>
-                </button>
-
-                <div class="accordion-panel" id="panel-vocabulaire" role="region" aria-labelledby="trigger-vocabulaire">
-                    <div class="accordion-panel-inner">
-                        <p class="section-intro">
-                            On ne peut pas piloter ce qu'on ne sait pas nommer. Ces 9 mots reviennent dans <strong>toutes</strong> les discussions sur l'IA — réunions, articles, démos commerciales. Une fois qu'ils sont clairs, le reste du sujet devient étonnamment accessible. <strong>Cliquez sur une carte pour révéler sa définition.</strong>
-                        </p>
-
-                        <div class="keywords-grid">
-
-                            <article class="flip-card" data-color="violet" tabindex="0" role="button" aria-label="Définition de IA générative">
-                                <div class="flip-card-inner">
-                                    <div class="flip-card-front">
-                                        <div class="keyword-head">
-                                            <div class="keyword-icon"><i data-lucide="sparkles"></i></div>
-                                            <span class="keyword-num">01</span>
-                                        </div>
-                                        <h3 class="keyword-term">IA générative</h3>
-                                        <span class="flip-hint"><i data-lucide="rotate-cw"></i> Définition</span>
-                                    </div>
-                                    <div class="flip-card-back">
-                                        <p class="flip-back-label">// 01 — IA GÉNÉRATIVE</p>
-                                        <p class="keyword-def">
-                                            Famille d'IA capables de <strong>créer du contenu original</strong> — texte, image, code, audio, vidéo. Là où une IA classique <em>trie</em> (spam ou pas spam&nbsp;?), l'IA générative <em>produit</em> du neuf, un peu comme un musicien qui improvise après avoir écouté des milliers de morceaux.
-                                        </p>
-                                    </div>
-                                </div>
-                            </article>
-
-                            <article class="flip-card" data-color="cyan" tabindex="0" role="button" aria-label="Définition de LLM">
-                                <div class="flip-card-inner">
-                                    <div class="flip-card-front">
-                                        <div class="keyword-head">
-                                            <div class="keyword-icon"><i data-lucide="message-square-text"></i></div>
-                                            <span class="keyword-num">02</span>
-                                        </div>
-                                        <h3 class="keyword-term">LLM</h3>
-                                        <p class="keyword-aka-front">Large Language Model</p>
-                                        <span class="flip-hint"><i data-lucide="rotate-cw"></i> Définition</span>
-                                    </div>
-                                    <div class="flip-card-back">
-                                        <p class="flip-back-label">// 02 — LLM</p>
-                                        <p class="keyword-def">
-                                            Le « moteur » derrière les assistants comme ChatGPT, Claude ou Gemini. Il devine le mot le plus probable… mais ne « sait » rien au sens humain.<br><br>
-                                            <span class="keyword-warn">⚠ À ne pas confondre avec « l'IA » en général&nbsp;: le LLM n'est qu'une brique. Branché à des outils, il devient un agent&nbsp;; seul, il ne fait que produire du texte.</span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </article>
-
-                            <article class="flip-card" data-color="magenta" tabindex="0" role="button" aria-label="Définition de Agent">
-                                <div class="flip-card-inner">
-                                    <div class="flip-card-front">
-                                        <div class="keyword-head">
-                                            <div class="keyword-icon"><i data-lucide="bot"></i></div>
-                                            <span class="keyword-num">03</span>
-                                        </div>
-                                        <h3 class="keyword-term">Agent</h3>
-                                        <span class="flip-hint"><i data-lucide="rotate-cw"></i> Définition</span>
-                                    </div>
-                                    <div class="flip-card-back">
-                                        <p class="flip-back-label">// 03 — AGENT</p>
-                                        <p class="keyword-def">
-                                            Si le LLM est le cerveau, l'agent est le <strong>collaborateur complet</strong>&nbsp;: et va <strong>agir seul</strong> — planifier, se servir d'outils, naviguer sur le web, lire des fichiers, déclencher des actions.<br><br>
-                                            <span class="keyword-warn">⚠ À ne pas confondre avec un chatbot&nbsp;: un chatbot répond. Un agent agit — il enchaîne des étapes et utilise des outils pour atteindre un but.</span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </article>
-
-                            <article class="flip-card" data-color="violet" tabindex="0" role="button" aria-label="Définition de MCP">
-                                <div class="flip-card-inner">
-                                    <div class="flip-card-front">
-                                        <div class="keyword-head">
-                                            <div class="keyword-icon"><i data-lucide="plug-zap"></i></div>
-                                            <span class="keyword-num">04</span>
-                                        </div>
-                                        <h3 class="keyword-term">MCP</h3>
-                                        <p class="keyword-aka-front">Model Context Protocol</p>
-                                        <span class="flip-hint"><i data-lucide="rotate-cw"></i> Définition</span>
-                                    </div>
-                                    <div class="flip-card-back">
-                                        <p class="flip-back-label">// 04 — MCP</p>
-                                        <p class="keyword-def">
-                                            Standard ouvert qui permet à un agent de <strong>se connecter à vos outils et données</strong> (CRM, fichiers, API maison…). Une sorte de « prise universelle » entre l'IA et vos systèmes.
-                                        </p>
-                                    </div>
-                                </div>
-                            </article>
-
-                            <article class="flip-card" data-color="cyan" tabindex="0" role="button" aria-label="Définition de Fichier d'instruction">
-                                <div class="flip-card-inner">
-                                    <div class="flip-card-front">
-                                        <div class="keyword-head">
-                                            <div class="keyword-icon"><i data-lucide="file-text"></i></div>
-                                            <span class="keyword-num">05</span>
-                                        </div>
-                                        <h3 class="keyword-term">System prompt</h3>
-                                        <p class="keyword-aka-front">Fichier d'instruction</p>
-                                        <span class="flip-hint"><i data-lucide="rotate-cw"></i> Définition</span>
-                                    </div>
-                                    <div class="flip-card-back">
-                                        <p class="flip-back-label">// 05 — SYSTEM PROMPT</p>
-                                        <p class="keyword-def">
-                                            Document qui définit le <strong>rôle, le ton, les règles et le périmètre</strong> d'un agent. C'est sa « fiche de poste »&nbsp;: il ne change pas le modèle, il cadre son comportement.
-                                        </p>
-                                    </div>
-                                </div>
-                            </article>
-
-                            <article class="flip-card" data-color="magenta" tabindex="0" role="button" aria-label="Définition de Skill">
-                                <div class="flip-card-inner">
-                                    <div class="flip-card-front">
-                                        <div class="keyword-head">
-                                            <div class="keyword-icon"><i data-lucide="puzzle"></i></div>
-                                            <span class="keyword-num">06</span>
-                                        </div>
-                                        <h3 class="keyword-term">Skill</h3>
-                                        <span class="flip-hint"><i data-lucide="rotate-cw"></i> Définition</span>
-                                    </div>
-                                    <div class="flip-card-back">
-                                        <p class="flip-back-label">// 06 — SKILL</p>
-                                        <p class="keyword-def">
-                                            Compétence modulaire ajoutée à un agent pour lui donner un <strong>savoir-faire précis</strong> (générer un PDF, analyser un Excel, suivre une charte rédactionnelle).<br><br>
-                                            <span class="keyword-warn">⚠ À ne pas confondre avec le system prompt&nbsp;: le system prompt dit <em>qui</em> est l'agent&nbsp;; un skill lui ajoute un <em>savoir-faire</em> concret.</span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </article>
-
-                            <article class="flip-card" data-color="gradient" tabindex="0" role="button" aria-label="Définition de Token">
-                                <div class="flip-card-inner">
-                                    <div class="flip-card-front">
-                                        <div class="keyword-head">
-                                            <div class="keyword-icon"><i data-lucide="hash"></i></div>
-                                            <span class="keyword-num">07</span>
-                                        </div>
-                                        <h3 class="keyword-term">Token</h3>
-                                        <span class="flip-hint"><i data-lucide="rotate-cw"></i> Définition</span>
-                                    </div>
-                                    <div class="flip-card-back">
-                                        <p class="flip-back-label">// 07 — TOKEN</p>
-                                        <p class="keyword-def">
-                                            La plus petite « brique » de texte lue par un LLM — environ ¾ d'un mot en français. C'est l'unité qui sert à <strong>compter la facturation et la « mémoire »</strong> du modèle. Exemple&nbsp;: « intelligence » pèse à lui seul 3 à 4 tokens. Plus une conversation est longue, plus elle consomme de tokens.
-                                        </p>
-                                    </div>
-                                </div>
-                            </article>
-
-                            <article class="flip-card" data-color="cyan" tabindex="0" role="button" aria-label="Définition de RAG">
-                                <div class="flip-card-inner">
-                                    <div class="flip-card-front">
-                                        <div class="keyword-head">
-                                            <div class="keyword-icon"><i data-lucide="book-open"></i></div>
-                                            <span class="keyword-num">08</span>
-                                        </div>
-                                        <h3 class="keyword-term">RAG</h3>
-                                        <p class="keyword-aka-front">Retrieval-Augmented Generation</p>
-                                        <span class="flip-hint"><i data-lucide="rotate-cw"></i> Définition</span>
-                                    </div>
-                                    <div class="flip-card-back">
-                                        <p class="flip-back-label">// 08 — RAG</p>
-                                        <p class="keyword-def">
-                                            Technique qui permet à un LLM d'aller <strong>chercher l'information dans vos documents</strong> avant de répondre. En pratique&nbsp;: votre question arrive → le système recherche les passages pertinents dans votre base documentaire → ces extraits sont transmis au modèle avec la question → il répond en citant <em>vos</em> sources, pas ses connaissances générales. C'est la réponse la plus directe au problème des hallucinations.<br><br>
-                                            <span class="keyword-warn">⚠ À ne pas confondre avec le fine-tuning&nbsp;: le RAG <em>consulte</em> vos données à chaque question sans modifier le modèle&nbsp;; le fine-tuning, lui, <em>réentraîne</em> le modèle sur vos exemples.</span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </article>
-
-                            <article class="flip-card" data-color="magenta" tabindex="0" role="button" aria-label="Définition de Fine-tuning">
-                                <div class="flip-card-inner">
-                                    <div class="flip-card-front">
-                                        <div class="keyword-head">
-                                            <div class="keyword-icon"><i data-lucide="sliders-horizontal"></i></div>
-                                            <span class="keyword-num">09</span>
-                                        </div>
-                                        <h3 class="keyword-term">Fine-tuning</h3>
-                                        <span class="flip-hint"><i data-lucide="rotate-cw"></i> Définition</span>
-                                    </div>
-                                    <div class="flip-card-back">
-                                        <p class="flip-back-label">// 09 — FINE-TUNING</p>
-                                        <p class="keyword-def">
-                                            Réentraînement d'un modèle sur vos propres exemples pour qu'il <strong>adopte durablement un style, un format ou un domaine</strong> précis. Concrètement&nbsp;: vous fournissez des centaines de paires question/réponse idéale, et le modèle apprend à reproduire ce comportement — même sans instructions supplémentaires dans le prompt. Plus lourd et plus coûteux que le RAG&nbsp;: à considérer uniquement quand ni le prompting ni le RAG ne suffisent à atteindre le résultat voulu.
-                                        </p>
-                                    </div>
-                                </div>
-                            </article>
-
-                        </div>
-                    </div>
-                </div>
-            </article>
-        </div>
-    </section>
-
-    <!-- ====================== 02 — OUTILS ====================== -->
-    <section class="ia-section ia-section-alt" id="outils">
-        <div class="container">
-            <article class="accordion">
-                <button class="accordion-trigger" aria-expanded="false" aria-controls="panel-outils" id="trigger-outils">
-                    <div class="accordion-trigger-text">
-                        <p class="section-tag">// 02 — OUTILS</p>
-                        <h2 class="section-title">Quel outil pour quel besoin&nbsp;?</h2>
-                        <p class="section-subtitle">Vous conseiller sur le bon environnement — ou développer vos agents sur mesure</p>
-                    </div>
-                    <div class="accordion-chevron" aria-hidden="true">
-                        <i data-lucide="chevron-down"></i>
-                    </div>
-                </button>
-
-                <div class="accordion-panel" id="panel-outils" role="region" aria-labelledby="trigger-outils">
-                    <div class="accordion-panel-inner">
-                        <p class="section-intro">
-                            Le marché compte des centaines d'outils et bouge chaque semaine. Lequel correspond à votre usage&nbsp;?</em> Et <em>faut-il l'utiliser tel quel, ou développer une solution sur mesure&nbsp;?</em> C'est précisément là que j'interviens.
-                        </p>
-
-                        <p class="agents-intro-label">// JE VOUS AIDE À CHOISIR</p>
-                        <div class="tools-grid">
-                            <article class="tool-card">
-                                <div class="tool-icon"><i data-lucide="messages-square"></i></div>
-                                <h3 class="tool-cat">Assistants conversationnels</h3>
-                                <p class="tool-list">ChatGPT, Claude, Gemini, Le Chat — le quotidien de la plupart des usages.</p>
-                            </article>
-
-                            <article class="tool-card">
-                                <div class="tool-icon"><i data-lucide="image"></i></div>
-                                <h3 class="tool-cat">Génération visuelle</h3>
-                                <p class="tool-list">Image et vidéo (Midjourney, Flux, Veo, Runway…) — selon le rendu et le budget.</p>
-                            </article>
-
-                            <article class="tool-card">
-                                <div class="tool-icon"><i data-lucide="code-2"></i></div>
-                                <h3 class="tool-cat">Assistants de code</h3>
-                                <p class="tool-list">Claude Code, GitHub Copilot, Cursor — mes environnements de développement.</p>
-                            </article>
-
-                            <article class="tool-card">
-                                <div class="tool-icon"><i data-lucide="workflow"></i></div>
-                                <h3 class="tool-cat">Plateformes d'automatisation</h3>
-                                <p class="tool-list">n8n, Make, Zapier — pour orchestrer des tâches et chaîner des outils.</p>
-                            </article>
-                        </div>
-
-                        <p class="section-intro" style="margin-top: 1.5rem;">
-                            Je ne mise pas sur un outil, je mise sur une <strong>méthode de choix</strong> — pour que votre environnement survive aux effets de mode. Quel modèle, quel framework, quel niveau d'autonomie&nbsp;: je vous aide à arbitrer en fonction de <em>votre</em> contexte, pas des tendances.
-                        </p>
-
-                        <div class="callout callout-violet">
-                            <div class="callout-icon"><i data-lucide="rocket"></i></div>
-                            <div>
-                                <h4>Je développe vos agents sur mesure</h4>
-                                <p>
-                                    Au-delà du conseil, je conçois et développe des agents adaptés à votre contexte. Mon environnement de prédilection s'appuie sur <strong>Claude</strong> comme moteur de raisonnement, pour sa fiabilité sur les tâches longues et structurées, et sur des outils comme <strong>GitHub Copilot</strong> et <strong>Claude Code</strong> pour un développement rapide et maîtrisé. Un choix assumé de qualité et de robustesse plutôt que de course aux fonctionnalités.
-                                </p>
-                            </div>
-                        </div>
-
-                        <p class="section-outro">
-                            <span style="color: #EC4899; font-weight: 500;">Le bon outil n'est qu'un début — la vraie valeur vient de ce qu'on en fait.</span>
-                        </p>
-                    </div>
-                </div>
-            </article>
-        </div>
-    </section>
-
-    <!-- ====================== 03 — PROMPTS ====================== -->
-    <section class="ia-section" id="prompts">
-        <div class="container">
-            <article class="accordion">
-                <button class="accordion-trigger" aria-expanded="false" aria-controls="panel-prompts" id="trigger-prompts">
-                    <div class="accordion-trigger-text">
-                        <p class="section-tag">// 03 — PROMPTS</p>
-                        <h2 class="section-title">Bien prompter, puis dépasser le prompting</h2>
-                        <p class="section-subtitle">Les bases que tout le monde devrait maîtriser — et ce qui fait vraiment la différence</p>
-                    </div>
-                    <div class="accordion-chevron" aria-hidden="true">
-                        <i data-lucide="chevron-down"></i>
-                    </div>
-                </button>
-
-                <div class="accordion-panel" id="panel-prompts" role="region" aria-labelledby="trigger-prompts">
-                    <div class="accordion-panel-inner">
-                        <p class="section-intro">
-                            Un prompt, c'est simplement <strong>la consigne que vous donnez à l'IA</strong>: Un prompt flou donne une réponse moyenne, un prompt soigné donne un résultat exploitable. Le prompting est la compétence la plus rentable à acquérir ! <br><em><span style="color: #EC4899; font-weight: 500;">Maîtriser les bases suffit pour 80&nbsp;% des usages&nbsp;; les 20&nbsp;% restants — fiabilité, reproductibilité, intégration dans un système — relèvent d'un autre métier.</span></em>
-                        </p>
-
-                        <div class="callout callout-cyan" style="margin-bottom: 2.5rem;">
-                            <div class="callout-icon"><i data-lucide="arrow-left-right"></i></div>
-                            <div>
-                                <h4>Le même besoin, deux consignes</h4>
-                                <p>
-                                    ❌ <em>« Écris un mail pour relancer un client. »</em><br>
-                                    ✅ <em>« Tu es commercial·e B2B. Rédige un mail de relance court et chaleureux à un client qui n'a pas répondu à mon devis depuis 10 jours. Ton&nbsp;: professionnel mais humain. Termine par une question ouverte. »</em><br>
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="prompt-pillars">
-                            <h3 class="prompt-block-title">// LES 4 PILIERS</h3>
-                            <div class="pillars-grid">
-                                <div class="pillar">
-                                    <div class="pillar-num">01</div>
-                                    <h4>Rôle clair</h4>
-                                    <p>« Tu es un juriste spécialisé en RGPD. »</p>
-                                </div>
-                                <div class="pillar">
-                                    <div class="pillar-num">02</div>
-                                    <h4>Contexte précis</h4>
-                                    <p>Données, contraintes, public visé.</p>
-                                </div>
-                                <div class="pillar">
-                                    <div class="pillar-num">03</div>
-                                    <h4>Tâche explicite</h4>
-                                    <p>Verbe d'action, livrable attendu.</p>
-                                </div>
-                                <div class="pillar">
-                                    <div class="pillar-num">04</div>
-                                    <h4>Format de sortie</h4>
-                                    <p>Liste, tableau, ton, longueur.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="prompt-techniques">
-                            <h3 class="prompt-block-title">// TECHNIQUES COURANTES</h3>
-                            <ul class="techniques-list">
-                                <li>
-                                    <span class="tech-name">Zero-shot</span>
-                                    <span class="tech-desc">on demande directement, sans exemple — suffisant pour les tâches simples et bien définies.</span>
-                                </li>
-                                <li>
-                                    <span class="tech-name">Few-shot</span>
-                                    <span class="tech-desc">on montre 2-3 exemples du résultat voulu — idéal pour imposer un format précis (ex.&nbsp;: classer des avis clients toujours de la même façon).</span>
-                                </li>
-                                <li>
-                                    <span class="tech-name">Chain-of-thought</span>
-                                    <span class="tech-desc">on demande de raisonner étape par étape — utile sur les tâches logiques ou les calculs, où une réponse directe se trompe souvent.</span>
-                                </li>
-                                <li>
-                                    <span class="tech-name">Prompt structuré</span>
-                                    <span class="tech-desc">balises XML ou Markdown pour découper l'instruction — indispensable dès qu'un prompt devient long ou doit être réutilisé.</span>
-                                </li>
-                                <li>
-                                    <span class="tech-name">Itération</span>
-                                    <span class="tech-desc">raffiner progressivement plutôt que tout demander d'un coup — souvent plus rapide que de chercher le prompt parfait du premier coup.</span>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="callout callout-violet">
-                            <div class="callout-icon"><i data-lucide="trending-up"></i></div>
-                            <div>
-                                <h4>Le niveau au-dessus</h4>
-                                <p>
-                                    Au-delà du prompt isolé, un agent fiable repose sur des techniques moins visibles&nbsp;: <strong>gérer le contexte</strong> (que mettre, que retirer pour ne pas noyer le modèle), <strong>structurer les instructions</strong> pour qu'elles tiennent dans la durée, et <strong>tester systématiquement</strong> plutôt que de se fier à une impression. C'est là que se joue la différence entre un prompt qui marche une fois et un système qui tient en production.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="callout callout-warning">
-                            <div class="callout-icon"><i data-lucide="alert-triangle"></i></div>
-                            <div>
-                                <h4>Enjeux et limites à connaître</h4>
-                                <p>
-                                    Les LLM peuvent <strong>halluciner</strong> (inventer des faits avec aplomb), reproduire des <strong>biais</strong> présents dans leurs données d'entraînement (genre, culture, idéologie), être <strong>sensibles à la formulation</strong> (un mot change la réponse), et leurs connaissances ont une <strong>date de coupure</strong>. Surtout, ils ne « comprennent » pas comme nous&nbsp;: là où un cerveau humain s'appuie sur le sens, le corps et l'expérience, un LLM prédit statistiquement la suite la plus plausible. Garder cette distinction en tête, c'est déjà éviter 80&nbsp;% des mauvaises surprises.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        </div>
-    </section>
-
-    <!-- ====================== 04 — AGENTS ====================== -->
-    <section class="ia-section ia-section-alt" id="agents">
-        <div class="container">
-            <article class="accordion">
-                <button class="accordion-trigger" aria-expanded="false" aria-controls="panel-agents" id="trigger-agents">
-                    <div class="accordion-trigger-text">
-                        <p class="section-tag">// 04 — AGENTS CUSTOMS</p>
-                        <h2 class="section-title">Et si vous aviez vos propres collaborateurs IA&nbsp;?</h2>
-                        <p class="section-subtitle">Des collaborateurs spécialisés, conçus pour vos tâches réelles</p>
-                    </div>
-                    <div class="accordion-chevron" aria-hidden="true">
-                        <i data-lucide="chevron-down"></i>
-                    </div>
-                </button>
-
-                <div class="accordion-panel" id="panel-agents" role="region" aria-labelledby="trigger-agents">
-                    <div class="accordion-panel-inner">
-                        <p class="section-intro">
-                            Imaginez devoir confier à <strong>une seule personne</strong> la compta, le SAV, la veille concurrentielle et la rédaction de vos posts. Elle ferait tout… moyennement. L'approche moderne est différente&nbsp;: une <strong>équipe d'agents spécialisés</strong>, chacun avec un rôle précis, ses compétences et ses outils dédiés. Comme une vraie équipe, mais disponible 24h/24.
-                        </p>
-
-                        <p class="agents-intro-label">// 6 AGENTS QUE L'ON PEUT DÉPLOYER</p>
-                        <div class="agents-carousel-wrapper">
-                            <div class="agents-carousel-viewport">
-                                <div class="agents-carousel-track" id="agentsTrack">
-                                    <article class="agent-card">
-                                        <div class="agent-icon"><i data-lucide="mail"></i></div>
-                                        <h3 class="agent-name">Agent email</h3>
-                                        <p class="agent-desc">Trie votre boîte, prépare les réponses et fait remonter ce qui demande vraiment votre attention.</p>
-                                    </article>
-                                    <article class="agent-card">
-                                        <div class="agent-icon"><i data-lucide="radar"></i></div>
-                                        <h3 class="agent-name">Agent veille</h3>
-                                        <p class="agent-desc">Surveille votre marché et vos concurrents, et livre une synthèse hebdomadaire prête à lire — sans le bruit.</p>
-                                    </article>
-                                    <article class="agent-card">
-                                        <div class="agent-icon"><i data-lucide="pen-tool"></i></div>
-                                        <h3 class="agent-name">Agent rédacteur</h3>
-                                        <p class="agent-desc">Articles, posts LinkedIn et newsletters dans votre ton de marque, à partir de vos idées brutes.</p>
-                                    </article>
-                                    <article class="agent-card">
-                                        <div class="agent-icon"><i data-lucide="bar-chart-3"></i></div>
-                                        <h3 class="agent-name">Agent analyste</h3>
-                                        <p class="agent-desc">Interroge vos données en langage naturel et génère rapports et tableaux de bord à la demande.</p>
-                                    </article>
-                                    <article class="agent-card">
-                                        <div class="agent-icon"><i data-lucide="message-circle"></i></div>
-                                        <h3 class="agent-name">Agent support</h3>
-                                        <p class="agent-desc">Répond aux questions clients récurrentes 24h/24 et transmet les cas complexes à un humain.</p>
-                                    </article>
-                                    <article class="agent-card">
-                                        <div class="agent-icon"><i data-lucide="calendar-check"></i></div>
-                                        <h3 class="agent-name">Agent assistant</h3>
-                                        <p class="agent-desc">Gère l'agenda, rédige les comptes-rendus de réunion et prépare vos relances.</p>
-                                    </article>
-                                </div>
-                            </div>
-                            <div class="agents-carousel-nav">
-                                <button class="carousel-btn" id="agentsPrev" aria-label="Agents précédents" disabled>
-                                    <i data-lucide="chevron-left"></i>
-                                </button>
-                                <div class="carousel-dots" id="agentsDots"></div>
-                                <button class="carousel-btn" id="agentsNext" aria-label="Agents suivants">
-                                    <i data-lucide="chevron-right"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <script>
-                        (function() {
-                            var track = document.getElementById('agentsTrack');
-                            if (!track) return;
-                            var viewport = track.parentElement;
-                            var prevBtn = document.getElementById('agentsPrev');
-                            var nextBtn = document.getElementById('agentsNext');
-                            var dotsContainer = document.getElementById('agentsDots');
-                            var page = 0;
-                            var lastPerPage = 0;
-
-                            function getPerPage() {
-                                if (window.innerWidth >= 900) return 3;
-                                if (window.innerWidth >= 540) return 2;
-                                return 1;
-                            }
-
-                            function buildDots(total) {
-                                dotsContainer.innerHTML = '';
-                                for (var i = 0; i < total; i++) {
-                                    var btn = document.createElement('button');
-                                    btn.className = 'carousel-dot';
-                                    btn.setAttribute('aria-label', 'Page ' + (i + 1));
-                                    btn.setAttribute('data-page', i);
-                                    dotsContainer.appendChild(btn);
-                                }
-                            }
-
-                            function update() {
-                                var perPage = getPerPage();
-                                var totalPages = Math.ceil(6 / perPage);
-                                var cards = track.querySelectorAll('.agent-card');
-                                if (!cards.length || !viewport.offsetWidth) return;
-
-                                if (perPage !== lastPerPage) {
-                                    lastPerPage = perPage;
-                                    page = 0;
-                                    buildDots(totalPages);
-                                }
-
-                                page = Math.min(page, totalPages - 1);
-
-                                var gap = 14;
-                                var cardWidth = (viewport.offsetWidth - gap * (perPage - 1)) / perPage;
-                                var offset = page * perPage * (cardWidth + gap);
-
-                                track.style.transform = 'translateX(-' + offset + 'px)';
-                                cards.forEach(function(c) {
-                                    c.style.width = cardWidth + 'px';
-                                    c.style.flexShrink = '0';
-                                });
-
-                                var dots = dotsContainer.querySelectorAll('.carousel-dot');
-                                dots.forEach(function(d, i) { d.classList.toggle('is-active', i === page); });
-
-                                prevBtn.disabled = page === 0;
-                                nextBtn.disabled = page >= totalPages - 1;
-                            }
-
-                            prevBtn.addEventListener('click', function() { page = Math.max(0, page - 1); update(); });
-                            nextBtn.addEventListener('click', function() { page = Math.min(Math.ceil(6 / getPerPage()) - 1, page + 1); update(); });
-                            dotsContainer.addEventListener('click', function(e) {
-                                var btn = e.target.closest('[data-page]');
-                                if (btn) { page = parseInt(btn.getAttribute('data-page')); update(); }
-                            });
-
-                            window.addEventListener('resize', function() { page = Math.min(page, Math.ceil(6 / getPerPage()) - 1); update(); });
-                            if (window.ResizeObserver) { new ResizeObserver(update).observe(viewport); }
-                            update();
-                        })();
-                        </script>
-
-                        <div class="benefits-row">
-                            <div class="benefit">
-                                <div class="benefit-icon"><i data-lucide="zap"></i></div>
-                                <h4>Plus performants</h4>
-                                <p>Chaque agent fait mieux qu'un généraliste sur sa tâche.</p>
-                            </div>
-                            <div class="benefit">
-                                <div class="benefit-icon"><i data-lucide="shield-check"></i></div>
-                                <h4>Plus fiables</h4>
-                                <p>Périmètre clair = moins d'erreurs, plus de prévisibilité.</p>
-                            </div>
-                            <div class="benefit">
-                                <div class="benefit-icon"><i data-lucide="git-branch"></i></div>
-                                <h4>Orchestrables</h4>
-                                <p>Chaînés entre eux pour former un système multi-agents.</p>
-                            </div>
-                        </div>
-
-                        <div class="callout callout-warning">
-                            <div class="callout-icon"><i data-lucide="alert-triangle"></i></div>
-                            <div>
-                                <h4>Quand un agent n'est <em>pas</em> la solution</h4>
-                                <p>
-                                    Un agent n'est pas toujours la bonne réponse. Pour une tâche ponctuelle, un simple prompt suffit. Pour un processus 100&nbsp;% déterministe (toujours les mêmes règles, sans jugement), un script classique est plus fiable et moins cher. Je le dis avant de commencer&nbsp;: déployer un agent là où il n'apporte rien, c'est de la complexité pour rien.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="callout callout-violet">
-                            <div class="callout-icon"><i data-lucide="rocket"></i></div>
-                            <p>
-                                Je vous accompagne pour identifier les bons cas d'usage, concevoir vos agents et les déployer progressivement, sans bouleverser vos processus existants.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        </div>
-    </section>
-
-    <!-- ====================== 05 — CYCLE ====================== -->
-    <section class="ia-section" id="cycle">
-        <div class="container">
-            <article class="accordion">
-                <button class="accordion-trigger" aria-expanded="false" aria-controls="panel-cycle" id="trigger-cycle">
-                    <div class="accordion-trigger-text">
-                        <p class="section-tag">// 05 — MÉTHODE</p>
-                        <h2 class="section-title">Cycle de développement d'un agent</h2>
-                        <p class="section-subtitle">Une méthodologie en 6 étapes pour des agents fiables</p>
-                    </div>
-                    <div class="accordion-chevron" aria-hidden="true">
-                        <i data-lucide="chevron-down"></i>
-                    </div>
-                </button>
-
-                <div class="accordion-panel" id="panel-cycle" role="region" aria-labelledby="trigger-cycle">
-                    <div class="accordion-panel-inner">
-                        <p class="section-intro">
-                            Un agent qui impressionne en démo et un agent qui tient en production, ce ne sont pas les mêmes. La différence se joue sur la <strong>méthode</strong>. Je l'aborde avec la rigueur d'un protocole de recherche&nbsp;: une hypothèse, des étapes claires, des mesures à chaque palier. C'est ce qui évite le piège classique — un prototype séduisant qui s'effondre dès qu'il rencontre la réalité. Voici la démarche que j'applique pour passer de l'idée à un système qui dure.
-                        </p>
-
-                        <ol class="cycle">
-                            <li class="cycle-step">
-                                <div class="cycle-circle"><span class="cycle-num">01</span></div>
-                                <div class="cycle-content">
-                                    <h3>Cadrage du besoin</h3>
-                                    <p>Le bon problème, le bon ROI.</p>
-                                </div>
-                            </li>
-
-                            <li class="cycle-step">
-                                <div class="cycle-circle"><span class="cycle-num">02</span></div>
-                                <div class="cycle-content">
-                                    <h3>Conception fonctionnelle</h3>
-                                    <p>Périmètre, garde-fous, escalades.</p>
-                                </div>
-                            </li>
-
-                            <li class="cycle-step">
-                                <div class="cycle-circle"><span class="cycle-num">03</span></div>
-                                <div class="cycle-content">
-                                    <h3>Choix techniques</h3>
-                                    <p>Modèle, outils, mémoire, hébergement.</p>
-                                </div>
-                            </li>
-
-                            <li class="cycle-step">
-                                <div class="cycle-circle"><span class="cycle-num">04</span></div>
-                                <div class="cycle-content">
-                                    <h3>Développement de l'agent</h3>
-                                    <p>System prompt, skills et intégrations.</p>
-                                </div>
-                            </li>
-
-                            <li class="cycle-step">
-                                <div class="cycle-circle"><span class="cycle-num">05</span></div>
-                                <div class="cycle-content">
-                                    <h3>Tests &amp; évaluations</h3>
-                                    <p>Pertinence, hallucinations, dérives.</p>
-                                </div>
-                            </li>
-
-                            <li class="cycle-step">
-                                <div class="cycle-circle"><span class="cycle-num">06</span></div>
-                                <div class="cycle-content">
-                                    <h3>Mise en production</h3>
-                                    <p>Suivi, feedback, ajustements continus.</p>
-                                </div>
-                            </li>
-                        </ol>
-
-                        <div class="callout callout-warning" style="border-left: 3px solid #EC4899; background-color: rgba(236,72,153,0.11); box-shadow: 0 0 28px rgba(236,72,153,0.1); padding: 24px 28px;">
-                            <div class="callout-icon" style="background-color: rgba(236,72,153,0.25); color: #EC4899;"><i data-lucide="alert-circle"></i></div>
-                            <p style="font-size: 15.5px; color: var(--text-primary); font-weight: 500; letter-spacing: -0.1px;">
-                                Un agent n'est jamais « fini »&nbsp;: il vit avec votre activité et doit être maintenu.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        </div>
-    </section>
-
-    <!-- ====================== 06 — MCP ====================== -->
-    <section class="ia-section ia-section-alt" id="mcp">
-        <div class="container">
-            <article class="accordion">
-                <button class="accordion-trigger" aria-expanded="false" aria-controls="panel-mcp" id="trigger-mcp">
-                    <div class="accordion-trigger-text">
-                        <p class="section-tag">// 06 — INTÉGRATION</p>
-                        <h2 class="section-title">Développement de MCP sur mesure</h2>
-                        <p class="section-subtitle">Brancher l'IA à vos vraies données métier</p>
-                    </div>
-                    <div class="accordion-chevron" aria-hidden="true">
-                        <i data-lucide="chevron-down"></i>
-                    </div>
-                </button>
-
-                <div class="accordion-panel" id="panel-mcp" role="region" aria-labelledby="trigger-mcp">
-                    <div class="accordion-panel-inner">
-                        <p class="section-intro">
-                            C'est la section la plus technique — mais l'idée est simple. Un agent IA, par défaut, ne connaît <strong>que</strong> ce sur quoi il a été entraîné&nbsp;: il ignore tout de vos clients, vos produits, vos documents. Le MCP est la <strong>« prise universelle »</strong> qui le branche sur vos vraies données et vos outils internes — CRM, base produits, documents, API métier — sans dépendre d'intégrations propriétaires fermées. Résultat&nbsp;: un agent qui parle de <em>votre</em> activité, pas de généralités.
-                        </p>
-
-                        <div class="callout callout-cyan" style="margin-bottom: 2.5rem;">
-                            <div class="callout-icon"><i data-lucide="database"></i></div>
-                            <div>
-                                <h4>Concrètement, à quoi ça sert&nbsp;?</h4>
-                                <p>
-                                    Imaginez demander à votre agent, en langage naturel — <em>« Quels clients n'ont pas recommandé depuis 6 mois&nbsp;? »</em> — et qu'il interroge directement votre vrai CRM pour répondre, avec les vrais noms et les vrais chiffres. Sans MCP, l'agent ne connaît que des généralités&nbsp;; avec un MCP sur mesure, il travaille sur <em>vos</em> données.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="mcp-grid">
-                            <h3 class="mcp-block-title">// POURQUOI UN MCP SUR MESURE</h3>
-                            <div class="mcp-reasons">
-                                <div class="mcp-reason">
-                                    <div class="mcp-reason-icon"><i data-lucide="lock"></i></div>
-                                    <h4>Souveraineté</h4>
-                                    <p>Vos données restent chez vous, vous contrôlez ce qui est exposé.</p>
-                                </div>
-                                <div class="mcp-reason">
-                                    <div class="mcp-reason-icon"><i data-lucide="target"></i></div>
-                                    <h4>Précision métier</h4>
-                                    <p>L'agent manipule vos vraies données, pas une approximation.</p>
-                                </div>
-                                <div class="mcp-reason">
-                                    <div class="mcp-reason-icon"><i data-lucide="repeat"></i></div>
-                                    <h4>Réutilisabilité</h4>
-                                    <p>Un même MCP sert plusieurs agents et plusieurs IA (Claude, ChatGPT…).</p>
-                                </div>
-                                <div class="mcp-reason">
-                                    <div class="mcp-reason-icon"><i data-lucide="layers"></i></div>
-                                    <h4>Évolutivité</h4>
-                                    <p>On ajoute des fonctionnalités au fur et à mesure des besoins.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="mcp-process">
-                            <h3 class="mcp-block-title">// MA DÉMARCHE</h3>
-                            <ol class="mcp-process-list">
-                                <li><strong>Analyse</strong> de vos systèmes existants</li>
-                                <li><strong>Définition</strong> des actions à exposer (lecture seule&nbsp;? écriture&nbsp;?)</li>
-                                <li><strong>Développement &amp; sécurisation</strong> du serveur MCP — contrôle fin des accès, lecture seule par défaut, journalisation des actions</li>
-                                <li><strong>Intégration</strong> dans votre environnement IA</li>
-                                <li><strong>Documentation &amp; formation</strong> de vos équipes</li>
-                            </ol>
-                        </div>
-
-                        <div class="callout callout-cyan">
-                            <div class="callout-icon"><i data-lucide="message-square-quote"></i></div>
-                            <p>
-                                Parlons-en&nbsp;: un MCP bien conçu transforme un agent générique en véritable collaborateur métier.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        </div>
-    </section>
-
-    <!-- ====================== CTA FINAL ====================== -->
-    <section class="cta-section">
-        <div class="container cta-inner">
-            <h2 class="cta-title">Un projet IA en tête&nbsp;? Ou juste des questions&nbsp;?</h2>
-            <p class="cta-subtitle">
-                Échangeons 30 minutes pour y voir clair sur votre besoin — faisabilité, priorités, premiers pas. Sans engagement, et sans jargon.
-            </p>
-            <a href="mailto:libralato.margot@gmail.com" class="btn-primary btn-large">
-                Réserver un créneau
-                <i data-lucide="arrow-right"></i>
-            </a>
-        </div>
-    </section>
-
-    <!-- ====================== FOOTER ====================== -->
-    
+<main id="main">
+<section class="hero" aria-labelledby="h1"><canvas id="net" aria-hidden="true"></canvas>
+<div class="wrap hero-grid">
+  <div class="hero-copy">
+    <p class="label">// Expertise · IA générative et agentique</p>
+    <h1 id="h1">Un agent fiable, <span class="grad-text">c'est une architecture</span>.</h1>
+    <p class="lead">Le modèle n'est que le cœur. Autour : le contexte qu'on lui donne, le harnais qui le cadre, la boucle qui le fait vérifier son travail, et le budget qui fixe ce qu'il coûte. C'est sur ces couches que se joue la différence entre une démo et un système en production.</p>
+    <p class="by">Par Margot Libralato, docteure en neurosciences et ingénieure IA agentique.</p>
+    <p class="hint">Cliquez sur une couche du schéma pour l'explorer sur la carte.</p>
+  </div>
+  <div class="anat-wrap"><svg class="anat" viewBox="0 0 440 440" role="img" aria-label="Schéma : un modèle au centre, entouré du contexte, d'une boucle, du tout encadré par le harnais, dans un budget">
+  <defs><radialGradient id="core" cx="50%" cy="45%"><stop offset="0" stop-color="#7C3AED" stop-opacity=".9"/><stop offset="1" stop-color="#11163A"/></radialGradient>
+  <marker id="ah" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 10 5 0 10z" fill="#67E8F9"/></marker></defs>
+  <g class="part" data-p="budget"><path d="M27.4 149.9 A205 205 0 0 1 412.6 149.9" class="ring-b"/><text x="220" y="2" text-anchor="middle" class="t-b">BUDGET · TOKENS</text>
+    <path d="M27.4 149.9 A205 205 0 0 1 290.1 27.4" class="ring-b fill"/></g>
+  <g class="part" data-p="harness"><circle cx="220" cy="220" r="178" class="ring-h"/><text x="220" y="60" text-anchor="middle" class="t-h">HARNAIS</text></g>
+  <g class="part" data-p="loop"><g class="spin"><circle cx="220" cy="220" r="142" class="ring-l"/><path d="M343.0 149.0 A142 142 0 0 1 361.5 207.6" class="ring-l arrow" marker-end="url(#ah)"/><path d="M97.0 291.0 A142 142 0 0 1 78.5 232.4" class="ring-l arrow" marker-end="url(#ah)"/></g><text x="220" y="348" class="t-l" text-anchor="middle">BOUCLE</text></g>
+  <g class="part" data-p="context"><circle cx="220" cy="220" r="104" class="ring-c"/><text x="220" y="134" text-anchor="middle" class="t-c">CONTEXTE</text>
+    <g class="docs"><rect x="150" y="250" width="22" height="28" rx="3"/><rect x="268" y="250" width="22" height="28" rx="3"/><rect x="209" y="285" width="22" height="28" rx="3"/></g></g>
+  <g class="part" data-p="model"><circle cx="220" cy="220" r="58" fill="url(#core)" class="core"/><text x="220" y="226" text-anchor="middle" class="t-m">MODÈLE</text></g>
+</svg></div>
+</div></section>
+<section class="formula-sec" aria-labelledby="f-title"><div class="wrap">
+  <p class="label">La formule à retenir</p>
+  <h2 id="f-title" class="sr">La formule d'un agent</h2>
+  <p class="formula"><span class="f-t">Agent</span><span class="f-op">=</span><span class="f-m">modèle</span><span class="f-op">+</span><span class="f-c">contexte</span><span class="f-op">+</span><span class="f-h">harnais</span><span class="f-sep">qui tourne en</span><span class="f-l">boucle</span><span class="f-sep">dans un</span><span class="f-b">budget</span></p>
+</div></section>
+<section id="carte" class="carte" aria-labelledby="ca-t" style="scroll-margin-top:var(--hd-h)"><div class="wrap">
+  <div class="sec-head"><p class="label">La carte</p><h2 id="ca-t">Toutes les notions, reliées entre elles</h2><p>Dix-huit notions, du token au harness engineering, dont six apparues ces derniers mois. Choisissez une notion : un aperçu s'ouvre à côté. Pour tout lire, dépliez la fiche complète sous la carte.</p></div>
+  <div class="cmap m-popover" data-mode="popover">
+  <div class="fls" role="group" aria-label="Filtrer les notions"><button type="button" class="fl" data-f="all" aria-pressed="true">Toutes</button><button type="button" class="fl" data-f="1" aria-pressed="false"><i class="sw lv1"></i>Niveau 1 · Les bases</button><button type="button" class="fl" data-f="2" aria-pressed="false"><i class="sw lv2"></i>Niveau 2 · Les agents</button><button type="button" class="fl" data-f="3" aria-pressed="false"><i class="sw lv3"></i>Niveau 3 · La production</button><button type="button" class="fl" data-f="new" aria-pressed="false"><i class="sw nwi"></i>Nouveautés</button></div>
+  <div class="mapbox"><svg class="map" role="group" aria-label="Carte des notions"></svg><div class="pop" role="dialog" aria-modal="false" aria-labelledby="pop-h" hidden><button type="button" class="pop-x" aria-label="Fermer">×</button><div class="pop-in"></div>
+<button type="button" class="btn btn-line pop-more">Lire la fiche complète <svg class="ico" style="width:18px;height:18px" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></div></div>
+  <p class="maphint">Cliquez sur une notion pour un aperçu, puis « Lire la fiche complète ».</p>
+  <div class="fis" aria-live="polite" hidden><article class="fi" data-id="genai" hidden aria-labelledby="fi-genai">
+  <header class="fi-head"><p class="label">Niveau 1 · Les bases</p><h3 id="fi-genai">IA générative </h3><p class="fi-en">Generative AI</p><p class="fi-hook">Une IA qui crée au lieu de trier.</p></header>
+  <div class="fi-cols">
+    <div class="fi-c1"><p class="nb-def">Famille d&#x27;IA capables de produire du contenu original : texte, image, code, audio, vidéo. Là où une IA classique classe (spam ou pas spam ?), l&#x27;IA générative fabrique du neuf.</p><p class="nb-ana"><span class="label">Image</span>Un musicien qui improvise après avoir écouté des milliers de morceaux.</p></div>
+    <div class="fi-c2"><p class="nb-ret"><span class="label">À retenir</span>Elle produit du plausible, pas du vrai : sa force et sa limite viennent du même endroit.</p></div>
+    <div class="fi-c3"><div class="rels"><p class="label">Suivre le fil</p><div><button type="button" class="rel" data-go="llm">LLM</button></div></div></div>
+  </div>
+</article><article class="fi" data-id="llm" hidden aria-labelledby="fi-llm">
+  <header class="fi-head"><p class="label">Niveau 1 · Les bases</p><h3 id="fi-llm">LLM </h3><p class="fi-en">Large Language Model</p><p class="fi-hook">Le moteur derrière ChatGPT, Claude ou Gemini.</p></header>
+  <div class="fi-cols">
+    <div class="fi-c1"><p class="nb-def">Un modèle entraîné sur d&#x27;immenses volumes de texte, qui prédit la suite la plus probable, token après token. Il ne « sait » rien au sens humain : il calcule ce qui est plausible.</p><p class="nb-ana"><span class="label">Image</span>Un cerveau sans corps ni souvenirs personnels : beaucoup de culture, aucune expérience.</p></div>
+    <div class="fi-c2"><p class="nb-ret"><span class="label">À retenir</span>Le LLM n&#x27;est qu&#x27;une brique. Branché à des outils et mis en boucle, il devient un agent.</p><p class="nb-trap"><span class="label">Attention</span>Ne pas confondre avec « l&#x27;IA » en général.</p></div>
+    <div class="fi-c3"><div class="rels"><p class="label">Suivre le fil</p><div><button type="button" class="rel" data-go="genai">IA générative</button><button type="button" class="rel" data-go="token">Token</button><button type="button" class="rel" data-go="agent">Agent</button></div></div></div>
+  </div>
+</article><article class="fi" data-id="token" hidden aria-labelledby="fi-token">
+  <header class="fi-head"><p class="label">Niveau 1 · Les bases</p><h3 id="fi-token">Token </h3><p class="fi-hook">L&#x27;unité de lecture, de mémoire et de facturation.</p></header>
+  <div class="fi-cols">
+    <div class="fi-c1"><p class="nb-def">Le plus petit morceau de texte qu&#x27;un LLM lit : environ trois quarts de mot en français. Tout se compte en tokens : ce que le modèle lit, ce qu&#x27;il écrit, ce qu&#x27;il facture.</p><p class="nb-ana"><span class="label">Image</span>Les briques de Lego du texte : « intelligence » en pèse trois ou quatre.</p></div>
+    <div class="fi-c2"><p class="nb-ret"><span class="label">À retenir</span>Plus la conversation est longue, plus chaque nouveau message coûte cher : il relit tout.</p></div>
+    <div class="fi-c3"><div class="rels"><p class="label">Suivre le fil</p><div><button type="button" class="rel" data-go="llm">LLM</button><button type="button" class="rel" data-go="fenetre">Fenêtre de contexte</button><button type="button" class="rel" data-go="tokeco">Token economy</button></div></div></div>
+  </div>
+</article><article class="fi" data-id="fenetre" hidden aria-labelledby="fi-fenetre">
+  <header class="fi-head"><p class="label">Niveau 1 · Les bases</p><h3 id="fi-fenetre">Fenêtre de contexte </h3><p class="fi-en">Context window</p><p class="fi-hook">Tout ce que l&#x27;IA a sous les yeux à un instant donné.</p></header>
+  <div class="fi-cols">
+    <div class="fi-c1"><p class="nb-def">Le texte que le modèle prend en compte pour répondre : consignes, fichiers, historique de la conversation, résultats de recherche. Ce qui n&#x27;y est pas n&#x27;existe pas pour lui.</p><p class="nb-ana"><span class="label">Image</span>Le bureau de travail : ce qui est posé dessus, et rien d&#x27;autre.</p></div>
+    <div class="fi-c2"><p class="nb-ret"><span class="label">À retenir</span>Le bureau est déjà occupé avant ton premier mot : consignes de l&#x27;outil, instructions du projet, skills, mémoire.</p></div>
+    <div class="fi-c3"><div class="rels"><p class="label">Suivre le fil</p><div><button type="button" class="rel" data-go="token">Token</button><button type="button" class="rel" data-go="context">Context engineering</button></div></div></div>
+  </div>
+</article><article class="fi" data-id="prompt" hidden aria-labelledby="fi-prompt">
+  <header class="fi-head"><p class="label">Niveau 1 · Les bases</p><h3 id="fi-prompt">Prompt </h3><p class="fi-en">Prompt engineering</p><p class="fi-hook">La consigne. La compétence la plus rentable à acquérir.</p></header>
+  <div class="fi-cols">
+    <div class="fi-c1"><p class="nb-def">La demande que l&#x27;on adresse à l&#x27;IA. Quatre piliers suffisent pour la plupart des usages : un rôle clair, un contexte précis, une tâche explicite, un format de sortie.</p><p class="nb-ana"><span class="label">Image</span>Le brief que l&#x27;on donne à un nouveau collègue brillant mais qui ne connaît rien de ton entreprise.</p></div>
+    <div class="fi-c2"><p class="nb-ret"><span class="label">À retenir</span>Un prompt flou donne une réponse moyenne ; un prompt soigné donne un résultat exploitable.</p><p class="nb-trap"><span class="label">Attention</span>Le prompt porte sur un message. Le reste de la session relève du context engineering.</p></div>
+    <div class="fi-c3"><div class="rels"><p class="label">Suivre le fil</p><div><button type="button" class="rel" data-go="context">Context engineering</button></div></div></div>
+  </div>
+</article><article class="fi" data-id="skill" hidden aria-labelledby="fi-skill">
+  <header class="fi-head"><p class="label">Niveau 1 · Les bases</p><h3 id="fi-skill">Skill </h3><p class="fi-en">Agent skill</p><p class="fi-hook">Une fiche de procédure que l&#x27;IA sort du tiroir au bon moment.</p></header>
+  <div class="fi-cols">
+    <div class="fi-c1"><p class="nb-def">Un dossier qui contient un fichier SKILL.md (la méthode), parfois des références, des modèles ou des scripts. L&#x27;IA lit seulement le nom et la description de chaque skill ; elle n&#x27;ouvre le reste que si ta demande s&#x27;y prête.</p><p class="nb-ana"><span class="label">Image</span>La fiche de procédure rangée dans le tiroir : personne ne la relit chaque matin, on la sort le jour de la tâche.</p></div>
+    <div class="fi-c2"><p class="nb-ret"><span class="label">À retenir</span>Un skill qui ne s&#x27;ouvre pas, c&#x27;est presque toujours sa description : elle doit dire quoi et quand.</p><p class="nb-trap"><span class="label">Attention</span>Le system prompt dit qui est l&#x27;agent ; un skill lui ajoute un savoir-faire.</p></div>
+    <div class="fi-c3"><div class="rels"><p class="label">Suivre le fil</p><div><button type="button" class="rel" data-go="context">Context engineering</button><button type="button" class="rel" data-go="agent">Agent</button></div></div></div>
+  </div>
+</article><article class="fi" data-id="mcp" hidden aria-labelledby="fi-mcp">
+  <header class="fi-head"><p class="label">Niveau 1 · Les bases</p><h3 id="fi-mcp">MCP </h3><p class="fi-en">Model Context Protocol</p><p class="fi-hook">La prise universelle entre l&#x27;IA et vos outils.</p></header>
+  <div class="fi-cols">
+    <div class="fi-c1"><p class="nb-def">Un standard ouvert qui permet à une IA de se connecter à vos données et à vos logiciels (CRM, fichiers, tickets, API maison) sans intégration propriétaire.</p><p class="nb-ana"><span class="label">Image</span>Une multiprise normalisée : n&#x27;importe quel appareil se branche sur n&#x27;importe quelle prise.</p></div>
+    <div class="fi-c2"><p class="nb-ret"><span class="label">À retenir</span>Avec un MCP, l&#x27;agent parle de votre activité, avec vos vrais chiffres, et plus de généralités.</p></div>
+    <div class="fi-c3"><div class="rels"><p class="label">Suivre le fil</p><div><button type="button" class="rel" data-go="agent">Agent</button></div></div></div>
+  </div>
+</article><article class="fi" data-id="rag" hidden aria-labelledby="fi-rag">
+  <header class="fi-head"><p class="label">Niveau 1 · Les bases</p><h3 id="fi-rag">RAG </h3><p class="fi-en">Retrieval-Augmented Generation</p><p class="fi-hook">Aller chercher dans vos documents avant de répondre.</p></header>
+  <div class="fi-cols">
+    <div class="fi-c1"><p class="nb-def">Le système recherche les passages pertinents dans votre base documentaire, les place dans le contexte du modèle, qui répond en citant vos sources plutôt que ses connaissances générales.</p><p class="nb-ana"><span class="label">Image</span>L&#x27;examen à livre ouvert plutôt que de mémoire.</p></div>
+    <div class="fi-c2"><p class="nb-ret"><span class="label">À retenir</span>La réponse la plus directe aux hallucinations sur vos sujets métier.</p><p class="nb-trap"><span class="label">Attention</span>Le RAG consulte vos données sans modifier le modèle ; le fine-tuning réentraîne le modèle.</p></div>
+    <div class="fi-c3"><div class="rels"><p class="label">Suivre le fil</p><div><button type="button" class="rel" data-go="context">Context engineering</button><button type="button" class="rel" data-go="halluc">Hallucination</button></div></div></div>
+  </div>
+</article><article class="fi" data-id="halluc" hidden aria-labelledby="fi-halluc">
+  <header class="fi-head"><p class="label">Niveau 1 · Les bases</p><h3 id="fi-halluc">Hallucination </h3><p class="fi-hook">Une affirmation fausse énoncée avec aplomb.</p></header>
+  <div class="fi-cols">
+    <div class="fi-c1"><p class="nb-def">Le modèle produit une information plausible mais inexacte : une source inventée, un chiffre faux, une fonction qui n&#x27;existe pas. Aucun réglage ne la supprime totalement.</p><p class="nb-ana"><span class="label">Image</span>Le collègue qui préfère inventer une réponse plutôt que dire « je ne sais pas ».</p></div>
+    <div class="fi-c2"><p class="nb-ret"><span class="label">À retenir</span>Un bon contexte et un bon harnais réduisent les dérives ; tu relis toujours ce qui compte.</p></div>
+    <div class="fi-c3"><div class="rels"><p class="label">Suivre le fil</p><div><button type="button" class="rel" data-go="rag">RAG</button><button type="button" class="rel" data-go="evals">Évaluations</button></div></div></div>
+  </div>
+</article><article class="fi" data-id="agent" hidden aria-labelledby="fi-agent">
+  <header class="fi-head"><p class="label">Niveau 2 · Les agents</p><h3 id="fi-agent">Agent </h3><p class="fi-en">AI agent</p><p class="fi-hook">Un chatbot répond. Un agent agit.</p></header>
+  <div class="fi-cols">
+    <div class="fi-c1"><p class="nb-def">Une IA qui enchaîne seule plusieurs actions pour atteindre un objectif : lire, chercher, écrire, exécuter, envoyer. Concrètement, un modèle qui tourne en boucle avec des outils.</p><p class="nb-ana"><span class="label">Image</span>Si le LLM est le cerveau, l&#x27;agent est le collaborateur complet, avec ses mains et ses outils.</p></div>
+    <div class="fi-c2"><p class="nb-ret"><span class="label">À retenir</span>Agent = modèle + contexte + harnais, qui tourne en boucle, dans un budget.</p><p class="nb-trap"><span class="label">Attention</span>Pour une tâche ponctuelle, un prompt suffit. Pour une règle 100 % fixe, un script est plus fiable et moins cher.</p></div>
+    <div class="fi-c3"><div class="rels"><p class="label">Suivre le fil</p><div><button type="button" class="rel" data-go="mcp">MCP</button><button type="button" class="rel" data-go="llm">LLM</button><button type="button" class="rel" data-go="skill">Skill</button><button type="button" class="rel" data-go="chaine">Chaîne agentique</button><button type="button" class="rel" data-go="orch">Orchestration d&#x27;agents</button><button type="button" class="rel" data-go="harness">Harness engineering</button></div></div></div>
+  </div>
+</article><article class="fi" data-id="context" hidden aria-labelledby="fi-context">
+  <header class="fi-head"><p class="label">Niveau 2 · Les agents</p><h3 id="fi-context">Context engineering <span class="new">Nouveau</span></h3><p class="fi-hook">Décider ce qui est sur le bureau, à chaque étape.</p></header>
+  <div class="fi-cols">
+    <div class="fi-c1"><p class="nb-def">L&#x27;art de choisir ce qui entre dans la fenêtre de contexte, ce qu&#x27;on en retire, et quand. Il englobe le prompt : il porte sur toute la session, et sur les suivantes.</p><p class="nb-ana"><span class="label">Image</span>Un collaborateur dont le bureau n&#x27;a pas été rangé depuis un mois n&#x27;est pas moins compétent : il ne retrouve plus ce qui compte.</p></div>
+    <div class="fi-c2"><p class="nb-ret"><span class="label">À retenir</span>Le but : le plus petit ensemble de tokens à fort signal. Pas le plus complet, le plus petit qui suffit.</p><p class="nb-trap"><span class="label">Attention</span>Plus la fenêtre est remplie, moins l&#x27;IA retrouve ce qu&#x27;elle contient : c&#x27;est le context rot.</p></div>
+    <div class="fi-c3"><div class="nb-more"><h4>Ranger chaque information à sa place</h4><p>Règle permanente : instructions du projet. Document stable : base de connaissances. Méthode : skill. Donnée vivante : connecteur. État du jour : fichier de notes daté. Recherche volumineuse : sous-agent.</p></div><div class="nb-more"><h4>Quand la session s&#x27;allonge</h4><p>Repartir propre après deux corrections ratées, noter avant de vider, compacter en disant ce qu&#x27;il ne faut pas oublier, déléguer à un sous-agent qui ne rend qu&#x27;un résumé.</p></div><div class="nb-more"><h4>Charger juste à temps</h4><p>Un sommaire plutôt que tout coller. Pour chaque ligne d&#x27;instruction : la retirer causerait-il une erreur ? Si non, dehors.</p></div><div class="rels"><p class="label">Suivre le fil</p><div><button type="button" class="rel" data-go="fenetre">Fenêtre de contexte</button><button type="button" class="rel" data-go="prompt">Prompt</button><button type="button" class="rel" data-go="skill">Skill</button><button type="button" class="rel" data-go="rag">RAG</button><button type="button" class="rel" data-go="tokeco">Token economy</button></div></div></div>
+  </div>
+</article><article class="fi" data-id="chaine" hidden aria-labelledby="fi-chaine">
+  <header class="fi-head"><p class="label">Niveau 2 · Les agents</p><h3 id="fi-chaine">Chaîne agentique <span class="new">Nouveau</span></h3><p class="fi-en">Agentic workflow</p><p class="fi-hook">Des agents spécialisés qui se passent le relais.</p></header>
+  <div class="fi-cols">
+    <div class="fi-c1"><p class="nb-def">Une suite d&#x27;agents, chacun avec un rôle, ses skills et ses outils, qui se transmettent un livrable contrôlé. Le parcours est écrit à l&#x27;avance, avec des visas humains aux étapes qui comptent.</p><p class="nb-ana"><span class="label">Image</span>Une chaîne de production : chaque poste fait une chose, bien, et passe une pièce vérifiée au suivant.</p></div>
+    <div class="fi-c2"><p class="nb-ret"><span class="label">À retenir</span>Parce que l&#x27;ordre est fixé, la chaîne est prévisible, mesurable et auditable : c&#x27;est le bon point de départ.</p><p class="nb-trap"><span class="label">Attention</span>Dans une chaîne, le parcours est écrit d&#x27;avance. Dans une orchestration, un agent décide de la suite.</p></div>
+    <div class="fi-c3"><div class="nb-more"><h4>Exemple réel : une chaîne de tests IHM</h4><p>Six agents : relecteur de specs, collecteur de données, rédacteur et contrôleur de cas Gherkin, exécutant, créateur d&#x27;anomalies, rapporteur. Cinq visas humains : BA, testeur (trois fois), test lead.</p></div><div class="rels"><p class="label">Suivre le fil</p><div><button type="button" class="rel" data-go="agent">Agent</button><button type="button" class="rel" data-go="orch">Orchestration d&#x27;agents</button><button type="button" class="rel" data-go="harness">Harness engineering</button><button type="button" class="rel" data-go="loop">Loop engineering</button></div></div></div>
+  </div>
+</article><article class="fi" data-id="orch" hidden aria-labelledby="fi-orch">
+  <header class="fi-head"><p class="label">Niveau 2 · Les agents</p><h3 id="fi-orch">Orchestration d&#x27;agents <span class="new">Nouveau</span></h3><p class="fi-en">Multi-agent orchestration</p><p class="fi-hook">Un chef d&#x27;orchestre et des agents spécialistes.</p></header>
+  <div class="fi-cols">
+    <div class="fi-c1"><p class="nb-def">Un agent principal reçoit l&#x27;objectif, le découpe, confie chaque morceau à un sous-agent, puis rassemble et vérifie les résultats. Chaque sous-agent travaille dans son propre contexte et ne rend qu&#x27;un résumé.</p><p class="nb-ana"><span class="label">Image</span>Une cheffe de projet qui répartit le travail entre experts, puis relit la synthèse.</p></div>
+    <div class="fi-c2"><p class="nb-ret"><span class="label">À retenir</span>Plus de puissance sur les tâches ouvertes, mais plus de tokens et moins de prévisibilité : on commence simple.</p><p class="nb-trap"><span class="label">Attention</span>Plusieurs agents qui se parlent sans cadre, c&#x27;est plusieurs fois plus de tokens et des erreurs qui se propagent.</p></div>
+    <div class="fi-c3"><div class="nb-more"><h4>Cinq schémas d&#x27;orchestration</h4><p>Séquentiel (A puis B), parallèle (plusieurs agents en même temps, puis synthèse), routeur (on oriente vers le bon spécialiste), chef d&#x27;orchestre et exécutants, évaluateur et optimiseur (l&#x27;un produit, l&#x27;autre critique).</p></div><div class="rels"><p class="label">Suivre le fil</p><div><button type="button" class="rel" data-go="agent">Agent</button><button type="button" class="rel" data-go="chaine">Chaîne agentique</button><button type="button" class="rel" data-go="tokeco">Token economy</button></div></div></div>
+  </div>
+</article><article class="fi" data-id="tokeco" hidden aria-labelledby="fi-tokeco">
+  <header class="fi-head"><p class="label">Niveau 2 · Les agents</p><h3 id="fi-tokeco">Token economy <span class="new">Nouveau</span></h3><p class="fi-hook">Le coût d&#x27;une tâche réussie, pas le prix du token.</p></header>
+  <div class="fi-cols">
+    <div class="fi-c1"><p class="nb-def">Gérer les tokens comme un budget : chaque message relit tout le contexte, chaque outil et chaque sous-agent en consomme. La token economy arbitre entre coût, rapidité et qualité.</p><p class="nb-ana"><span class="label">Image</span>Le budget d&#x27;un projet : on ne paie pas un expert senior pour trier le courrier.</p></div>
+    <div class="fi-c2"><p class="nb-ret"><span class="label">À retenir</span>La bonne mesure est le coût par tâche réussie, erreurs et reprises comprises.</p><p class="nb-trap"><span class="label">Attention</span>Couper des tokens au hasard dégrade la qualité ; retirer le bruit l&#x27;améliore.</p></div>
+    <div class="fi-c3"><div class="nb-more"><h4>Les leviers</h4><p>Le bon modèle pour chaque tâche (un petit modèle rapide pour trier, un grand pour raisonner), un contexte minimal, la mise en cache des consignes stables, des sous-agents qui rendent des résumés, un nombre maximal de tours par agent, et un suivi du coût par run.</p></div><div class="rels"><p class="label">Suivre le fil</p><div><button type="button" class="rel" data-go="orch">Orchestration d&#x27;agents</button><button type="button" class="rel" data-go="token">Token</button><button type="button" class="rel" data-go="context">Context engineering</button></div></div></div>
+  </div>
+</article><article class="fi" data-id="harness" hidden aria-labelledby="fi-harness">
+  <header class="fi-head"><p class="label">Niveau 3 · La production</p><h3 id="fi-harness">Harness engineering <span class="new">Nouveau</span></h3><p class="fi-hook">Les instructions orientent, les règles contraignent.</p></header>
+  <div class="fi-cols">
+    <div class="fi-c1"><p class="nb-def">Le harnais, c&#x27;est tout ce qui dans un agent n&#x27;est pas le modèle : les règles de permission, les contrôles automatiques (hooks), le bac à sable, les fichiers de travail, et ce que l&#x27;humain garde. Le harness engineering conçoit cette partie.</p><p class="nb-ana"><span class="label">Image</span>Le harnais du cheval : tout ce qui l&#x27;entoure pour que sa force aille dans la bonne direction.</p></div>
+    <div class="fi-c2"><p class="nb-ret"><span class="label">À retenir</span>Agent = modèle + harnais. Une consigne s&#x27;adresse au modèle, qui essaie ; une règle s&#x27;adresse à l&#x27;outil, qui applique.</p><p class="nb-trap"><span class="label">Attention</span>Le harnais contrôle les actions, pas la justesse du contenu : la relecture humaine reste.</p></div>
+    <div class="fi-c3"><div class="nb-more"><h4>Trois couches, plus l&#x27;humain</h4><p>Les permissions (autorisé, à demander, interdit : un interdit gagne toujours). Les hooks, branchés avant ou après une action. Le bac à sable, qui ferme les fichiers et le réseau. Et l&#x27;humain, qui garde l&#x27;irréversible, ce qui engage, ce qu&#x27;on ne saurait pas vérifier après coup.</p></div><div class="nb-more"><h4>Les trois règles d&#x27;or</h4><p>L&#x27;irréversible se contrôle avant. Un interdit gagne toujours. Une dérive constatée devient une règle ajoutée.</p></div><div class="rels"><p class="label">Suivre le fil</p><div><button type="button" class="rel" data-go="agent">Agent</button><button type="button" class="rel" data-go="loop">Loop engineering</button><button type="button" class="rel" data-go="chaine">Chaîne agentique</button><button type="button" class="rel" data-go="iaact">IA Act by design</button></div></div></div>
+  </div>
+</article><article class="fi" data-id="loop" hidden aria-labelledby="fi-loop">
+  <header class="fi-head"><p class="label">Niveau 3 · La production</p><h3 id="fi-loop">Loop engineering <span class="new">Nouveau</span></h3><p class="fi-hook">Agir, vérifier, corriger, jusqu&#x27;à ce que ce soit vraiment fini.</p></header>
+  <div class="fi-cols">
+    <div class="fi-c1"><p class="nb-def">Concevoir la boucle dans laquelle l&#x27;agent travaille : il agit, observe le résultat, le confronte à un critère vérifiable, corrige, recommence, et s&#x27;arrête sur une condition claire. La qualité de la boucle fait la qualité du résultat.</p><p class="nb-ana"><span class="label">Image</span>Le protocole de recherche : hypothèse, essai, mesure, ajustement, jusqu&#x27;au résultat reproductible.</p></div>
+    <div class="fi-c2"><p class="nb-ret"><span class="label">À retenir</span>Sans signal de vérification, une boucle tourne à vide : l&#x27;agent se félicite au lieu de s&#x27;améliorer.</p><p class="nb-trap"><span class="label">Attention</span>Un agent pressé de finir peut « réussir » en contournant le test. On ne supprime jamais le test qui gêne.</p></div>
+    <div class="fi-c3"><div class="nb-more"><h4>Les quatre ingrédients d&#x27;une bonne boucle</h4><p>Un objectif vérifiable (un test qui passe, un critère d&#x27;acceptation). Un retour fiable à chaque tour (exécution, test, agent évaluateur). Une condition d&#x27;arrêt et un budget de tours. Une mémoire entre les tours (liste des tâches, fichier de progression).</p></div><div class="nb-more"><h4>Exemple réel</h4><p>Dans la chaîne de tests IHM, le contrôleur renvoie au rédacteur tout cas Gherkin invalide : la boucle tourne jusqu&#x27;à ce que chaque cas cite sa source et respecte le format.</p></div><div class="rels"><p class="label">Suivre le fil</p><div><button type="button" class="rel" data-go="harness">Harness engineering</button><button type="button" class="rel" data-go="evals">Évaluations</button><button type="button" class="rel" data-go="chaine">Chaîne agentique</button></div></div></div>
+  </div>
+</article><article class="fi" data-id="evals" hidden aria-labelledby="fi-evals">
+  <header class="fi-head"><p class="label">Niveau 3 · La production</p><h3 id="fi-evals">Évaluations </h3><p class="fi-en">Evals</p><p class="fi-hook">Mesurer plutôt que se fier à une impression.</p></header>
+  <div class="fi-cols">
+    <div class="fi-c1"><p class="nb-def">Un jeu de cas de test représentatifs, rejoué à chaque changement de modèle, de prompt ou de skill, avec des critères et des seuils : pertinence, exactitude, hallucinations, coût, durée.</p><p class="nb-ana"><span class="label">Image</span>Les tests de non-régression, appliqués à l&#x27;IA.</p></div>
+    <div class="fi-c2"><p class="nb-ret"><span class="label">À retenir</span>Un agent qui impressionne en démo et un agent qui tient en production ne sont pas le même agent.</p></div>
+    <div class="fi-c3"><div class="rels"><p class="label">Suivre le fil</p><div><button type="button" class="rel" data-go="halluc">Hallucination</button><button type="button" class="rel" data-go="loop">Loop engineering</button><button type="button" class="rel" data-go="iaact">IA Act by design</button></div></div></div>
+  </div>
+</article><article class="fi" data-id="iaact" hidden aria-labelledby="fi-iaact">
+  <header class="fi-head"><p class="label">Niveau 3 · La production</p><h3 id="fi-iaact">IA Act by design </h3><p class="fi-en">EU AI Act</p><p class="fi-hook">La conformité se gagne dans le code, les données et le run.</p></header>
+  <div class="fi-cols">
+    <div class="fi-c1"><p class="nb-def">Le règlement européen sur l&#x27;IA (UE 2024/1689) classe les systèmes par niveau de risque. Pour les équipes techniques, il se traduit en pratiques concrètes : inventaire, gestion des risques, données, journalisation, contrôle humain, robustesse, transparence, surveillance en production.</p><p class="nb-ana"><span class="label">Image</span>Le marquage CE, pour des systèmes qui apprennent.</p></div>
+    <div class="fi-c2"><p class="nb-ret"><span class="label">À retenir</span>Ce qui est conçu dès le départ coûte bien moins cher que ce qui est rattrapé avant l&#x27;audit.</p><p class="nb-trap"><span class="label">Attention</span>Le profilage de personnes est toujours classé à haut risque.</p></div>
+    <div class="fi-c3"><div class="rels"><p class="label">Suivre le fil</p><div><button type="button" class="rel" data-go="harness">Harness engineering</button><button type="button" class="rel" data-go="evals">Évaluations</button></div></div></div>
+  </div>
+</article></div>
+  <template data-pop="genai"><p class="label">Niveau 1 · Les bases</p><h3>IA générative</h3>
+<p class="pp-hook">Une IA qui crée au lieu de trier.</p><p class="pp-def">Famille d&#x27;IA capables de produire du contenu original : texte, image, code, audio, vidéo. Là où une IA classique classe (spam ou pas spam ?), l&#x27;IA générative fabrique du neuf.</p><p class="pp-ret"><span class="label">À retenir</span>Elle produit du plausible, pas du vrai : sa force et sa limite viennent du même endroit.</p></template><template data-pop="llm"><p class="label">Niveau 1 · Les bases</p><h3>LLM</h3>
+<p class="pp-hook">Le moteur derrière ChatGPT, Claude ou Gemini.</p><p class="pp-def">Un modèle entraîné sur d&#x27;immenses volumes de texte, qui prédit la suite la plus probable, token après token. Il ne « sait » rien au sens humain : il calcule ce qui est plausible.</p><p class="pp-ret"><span class="label">À retenir</span>Le LLM n&#x27;est qu&#x27;une brique. Branché à des outils et mis en boucle, il devient un agent.</p></template><template data-pop="token"><p class="label">Niveau 1 · Les bases</p><h3>Token</h3>
+<p class="pp-hook">L&#x27;unité de lecture, de mémoire et de facturation.</p><p class="pp-def">Le plus petit morceau de texte qu&#x27;un LLM lit : environ trois quarts de mot en français. Tout se compte en tokens : ce que le modèle lit, ce qu&#x27;il écrit, ce qu&#x27;il facture.</p><p class="pp-ret"><span class="label">À retenir</span>Plus la conversation est longue, plus chaque nouveau message coûte cher : il relit tout.</p></template><template data-pop="fenetre"><p class="label">Niveau 1 · Les bases</p><h3>Fenêtre de contexte</h3>
+<p class="pp-hook">Tout ce que l&#x27;IA a sous les yeux à un instant donné.</p><p class="pp-def">Le texte que le modèle prend en compte pour répondre : consignes, fichiers, historique de la conversation, résultats de recherche. Ce qui n&#x27;y est pas n&#x27;existe pas pour lui.</p><p class="pp-ret"><span class="label">À retenir</span>Le bureau est déjà occupé avant ton premier mot : consignes de l&#x27;outil, instructions du projet, skills, mémoire.</p></template><template data-pop="prompt"><p class="label">Niveau 1 · Les bases</p><h3>Prompt</h3>
+<p class="pp-hook">La consigne. La compétence la plus rentable à acquérir.</p><p class="pp-def">La demande que l&#x27;on adresse à l&#x27;IA. Quatre piliers suffisent pour la plupart des usages : un rôle clair, un contexte précis, une tâche explicite, un format de sortie.</p><p class="pp-ret"><span class="label">À retenir</span>Un prompt flou donne une réponse moyenne ; un prompt soigné donne un résultat exploitable.</p></template><template data-pop="skill"><p class="label">Niveau 1 · Les bases</p><h3>Skill</h3>
+<p class="pp-hook">Une fiche de procédure que l&#x27;IA sort du tiroir au bon moment.</p><p class="pp-def">Un dossier qui contient un fichier SKILL.md (la méthode), parfois des références, des modèles ou des scripts. L&#x27;IA lit seulement le nom et la description de chaque skill ; elle n&#x27;ouvre le reste que si ta demande s&#x27;y prête.</p><p class="pp-ret"><span class="label">À retenir</span>Un skill qui ne s&#x27;ouvre pas, c&#x27;est presque toujours sa description : elle doit dire quoi et quand.</p></template><template data-pop="mcp"><p class="label">Niveau 1 · Les bases</p><h3>MCP</h3>
+<p class="pp-hook">La prise universelle entre l&#x27;IA et vos outils.</p><p class="pp-def">Un standard ouvert qui permet à une IA de se connecter à vos données et à vos logiciels (CRM, fichiers, tickets, API maison) sans intégration propriétaire.</p><p class="pp-ret"><span class="label">À retenir</span>Avec un MCP, l&#x27;agent parle de votre activité, avec vos vrais chiffres, et plus de généralités.</p></template><template data-pop="rag"><p class="label">Niveau 1 · Les bases</p><h3>RAG</h3>
+<p class="pp-hook">Aller chercher dans vos documents avant de répondre.</p><p class="pp-def">Le système recherche les passages pertinents dans votre base documentaire, les place dans le contexte du modèle, qui répond en citant vos sources plutôt que ses connaissances générales.</p><p class="pp-ret"><span class="label">À retenir</span>La réponse la plus directe aux hallucinations sur vos sujets métier.</p></template><template data-pop="halluc"><p class="label">Niveau 1 · Les bases</p><h3>Hallucination</h3>
+<p class="pp-hook">Une affirmation fausse énoncée avec aplomb.</p><p class="pp-def">Le modèle produit une information plausible mais inexacte : une source inventée, un chiffre faux, une fonction qui n&#x27;existe pas. Aucun réglage ne la supprime totalement.</p><p class="pp-ret"><span class="label">À retenir</span>Un bon contexte et un bon harnais réduisent les dérives ; tu relis toujours ce qui compte.</p></template><template data-pop="agent"><p class="label">Niveau 2 · Les agents</p><h3>Agent</h3>
+<p class="pp-hook">Un chatbot répond. Un agent agit.</p><p class="pp-def">Une IA qui enchaîne seule plusieurs actions pour atteindre un objectif : lire, chercher, écrire, exécuter, envoyer. Concrètement, un modèle qui tourne en boucle avec des outils.</p><p class="pp-ret"><span class="label">À retenir</span>Agent = modèle + contexte + harnais, qui tourne en boucle, dans un budget.</p></template><template data-pop="context"><p class="label">Niveau 2 · Les agents</p><h3>Context engineering <span class="new">Nouveau</span></h3>
+<p class="pp-hook">Décider ce qui est sur le bureau, à chaque étape.</p><p class="pp-def">L&#x27;art de choisir ce qui entre dans la fenêtre de contexte, ce qu&#x27;on en retire, et quand. Il englobe le prompt : il porte sur toute la session, et sur les suivantes.</p><p class="pp-ret"><span class="label">À retenir</span>Le but : le plus petit ensemble de tokens à fort signal. Pas le plus complet, le plus petit qui suffit.</p></template><template data-pop="chaine"><p class="label">Niveau 2 · Les agents</p><h3>Chaîne agentique <span class="new">Nouveau</span></h3>
+<p class="pp-hook">Des agents spécialisés qui se passent le relais.</p><p class="pp-def">Une suite d&#x27;agents, chacun avec un rôle, ses skills et ses outils, qui se transmettent un livrable contrôlé. Le parcours est écrit à l&#x27;avance, avec des visas humains aux étapes qui comptent.</p><p class="pp-ret"><span class="label">À retenir</span>Parce que l&#x27;ordre est fixé, la chaîne est prévisible, mesurable et auditable : c&#x27;est le bon point de départ.</p></template><template data-pop="orch"><p class="label">Niveau 2 · Les agents</p><h3>Orchestration d&#x27;agents <span class="new">Nouveau</span></h3>
+<p class="pp-hook">Un chef d&#x27;orchestre et des agents spécialistes.</p><p class="pp-def">Un agent principal reçoit l&#x27;objectif, le découpe, confie chaque morceau à un sous-agent, puis rassemble et vérifie les résultats. Chaque sous-agent travaille dans son propre contexte et ne rend qu&#x27;un résumé.</p><p class="pp-ret"><span class="label">À retenir</span>Plus de puissance sur les tâches ouvertes, mais plus de tokens et moins de prévisibilité : on commence simple.</p></template><template data-pop="tokeco"><p class="label">Niveau 2 · Les agents</p><h3>Token economy <span class="new">Nouveau</span></h3>
+<p class="pp-hook">Le coût d&#x27;une tâche réussie, pas le prix du token.</p><p class="pp-def">Gérer les tokens comme un budget : chaque message relit tout le contexte, chaque outil et chaque sous-agent en consomme. La token economy arbitre entre coût, rapidité et qualité.</p><p class="pp-ret"><span class="label">À retenir</span>La bonne mesure est le coût par tâche réussie, erreurs et reprises comprises.</p></template><template data-pop="harness"><p class="label">Niveau 3 · La production</p><h3>Harness engineering <span class="new">Nouveau</span></h3>
+<p class="pp-hook">Les instructions orientent, les règles contraignent.</p><p class="pp-def">Le harnais, c&#x27;est tout ce qui dans un agent n&#x27;est pas le modèle : les règles de permission, les contrôles automatiques (hooks), le bac à sable, les fichiers de travail, et ce que l&#x27;humain garde. Le harness engineering conçoit cette partie.</p><p class="pp-ret"><span class="label">À retenir</span>Agent = modèle + harnais. Une consigne s&#x27;adresse au modèle, qui essaie ; une règle s&#x27;adresse à l&#x27;outil, qui applique.</p></template><template data-pop="loop"><p class="label">Niveau 3 · La production</p><h3>Loop engineering <span class="new">Nouveau</span></h3>
+<p class="pp-hook">Agir, vérifier, corriger, jusqu&#x27;à ce que ce soit vraiment fini.</p><p class="pp-def">Concevoir la boucle dans laquelle l&#x27;agent travaille : il agit, observe le résultat, le confronte à un critère vérifiable, corrige, recommence, et s&#x27;arrête sur une condition claire. La qualité de la boucle fait la qualité du résultat.</p><p class="pp-ret"><span class="label">À retenir</span>Sans signal de vérification, une boucle tourne à vide : l&#x27;agent se félicite au lieu de s&#x27;améliorer.</p></template><template data-pop="evals"><p class="label">Niveau 3 · La production</p><h3>Évaluations</h3>
+<p class="pp-hook">Mesurer plutôt que se fier à une impression.</p><p class="pp-def">Un jeu de cas de test représentatifs, rejoué à chaque changement de modèle, de prompt ou de skill, avec des critères et des seuils : pertinence, exactitude, hallucinations, coût, durée.</p><p class="pp-ret"><span class="label">À retenir</span>Un agent qui impressionne en démo et un agent qui tient en production ne sont pas le même agent.</p></template><template data-pop="iaact"><p class="label">Niveau 3 · La production</p><h3>IA Act by design</h3>
+<p class="pp-hook">La conformité se gagne dans le code, les données et le run.</p><p class="pp-def">Le règlement européen sur l&#x27;IA (UE 2024/1689) classe les systèmes par niveau de risque. Pour les équipes techniques, il se traduit en pratiques concrètes : inventaire, gestion des risques, données, journalisation, contrôle humain, robustesse, transparence, surveillance en production.</p><p class="pp-ret"><span class="label">À retenir</span>Ce qui est conçu dès le départ coûte bien moins cher que ce qui est rattrapé avant l&#x27;audit.</p></template>
+</div>
+</div></section>
+<section id="equipe" class="team" aria-labelledby="eq-t"><div class="wrap">
+  <div class="sec-head"><p class="label">De l'agent à l'équipe</p><h2 id="eq-t">Chaîne agentique ou orchestration ?</h2><p>Un agent seul fait tout moyennement. Une équipe d'agents spécialisés, chacun avec son rôle, ses skills et ses outils, fait mieux. Deux façons de l'organiser.</p></div>
+  <div class="tabs" role="tablist" aria-label="Organisation des agents">
+    <button role="tab" id="t-ch" aria-controls="tp-ch" aria-selected="true"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><path d="M7 10v4a3 3 0 0 0 3 3h4"/></svg>Chaîne agentique <span class="new">Nouveau</span></button>
+    <button role="tab" id="t-or" aria-controls="tp-or" aria-selected="false" tabindex="-1"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="5" r="2.5"/><circle cx="5" cy="19" r="2.5"/><circle cx="19" cy="19" r="2.5"/><circle cx="12" cy="19" r="2.5"/><path d="M12 7.5v9M10.5 7 6 16.8M13.5 7l4.5 9.8"/></svg>Orchestration d'agents <span class="new">Nouveau</span></button>
+  </div>
+  <div role="tabpanel" id="tp-ch" aria-labelledby="t-ch" class="tp">
+    <p class="tp-lead">Une suite d&#x27;agents, chacun avec un rôle, ses skills et ses outils, qui se transmettent un livrable contrôlé. Le parcours est écrit à l&#x27;avance, avec des visas humains aux étapes qui comptent.</p>
+    <p class="label case">Cas réel · chaîne de tests IHM · 6 agents · 5 visas humains</p>
+    <ol class="chain"><li><span class="ag"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8V4H8"/><rect x="4" y="8" width="16" height="12" rx="2"/><path d="M2 14h2M20 14h2M15 13v2M9 13v2"/></svg><b>01</b></span><h4>Relecteur de specs</h4><p>Lit les specs Confluence, liste chaque ambiguïté avec sa source</p><p class="visa"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span>BA : lève les ambiguïtés</span></p></li><li><span class="ag"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8V4H8"/><rect x="4" y="8" width="16" height="12" rx="2"/><path d="M2 14h2M20 14h2M15 13v2M9 13v2"/></svg><b>02</b></span><h4>Collecteur de données</h4><p>Rassemble jeux de données et cartographie applicative</p><p class="visa none">Pas de visa</p></li><li><span class="ag"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8V4H8"/><rect x="4" y="8" width="16" height="12" rx="2"/><path d="M2 14h2M20 14h2M15 13v2M9 13v2"/></svg><b>03</b></span><h4>Rédacteur + contrôleur<span class="loopb"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg>boucle</span></h4><p>Écrit les cas Gherkin ; le contrôleur renvoie tout cas invalide</p><p class="visa"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span>Testeur : valide le plan</span></p></li><li><span class="ag"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8V4H8"/><rect x="4" y="8" width="16" height="12" rx="2"/><path d="M2 14h2M20 14h2M15 13v2M9 13v2"/></svg><b>04</b></span><h4>Exécutant</h4><p>Joue les cas sur l&#x27;URL de recette, journalise chaque résultat</p><p class="visa"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span>Testeur : supervise l&#x27;exécution</span></p></li><li><span class="ag"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8V4H8"/><rect x="4" y="8" width="16" height="12" rx="2"/><path d="M2 14h2M20 14h2M15 13v2M9 13v2"/></svg><b>05</b></span><h4>Créateur d&#x27;anomalies</h4><p>Un cas en échec = un ticket Jira, avec capture</p><p class="visa"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span>Testeur : valide les tickets</span></p></li><li><span class="ag"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8V4H8"/><rect x="4" y="8" width="16" height="12" rx="2"/><path d="M2 14h2M20 14h2M15 13v2M9 13v2"/></svg><b>06</b></span><h4>Rapporteur</h4><p>Synthèse de campagne : chaque US du sprint a un résultat</p><p class="visa"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span>Test lead : publie le rapport</span></p></li></ol>
+    <div class="tp-notes"><p><b>À retenir.</b> Parce que l&#x27;ordre est fixé, la chaîne est prévisible, mesurable et auditable : c&#x27;est le bon point de départ.</p><p><b>Attention.</b> Dans une chaîne, le parcours est écrit d&#x27;avance. Dans une orchestration, un agent décide de la suite.</p></div>
+  </div>
+  <div role="tabpanel" id="tp-or" aria-labelledby="t-or" class="tp" hidden>
+    <p class="tp-lead">Un agent principal reçoit l&#x27;objectif, le découpe, confie chaque morceau à un sous-agent, puis rassemble et vérifie les résultats. Chaque sous-agent travaille dans son propre contexte et ne rend qu&#x27;un résumé.</p>
+    <div class="orch-grid">
+      <div class="orch-wrap"><svg class="orch" viewBox="0 0 520 300" role="img" aria-label="Un agent chef d'orchestre délègue à quatre sous-agents et reçoit leurs résumés">
+ <g class="o-links"><path id="o1" d="M260 80 L80 220"/><path id="o2" d="M260 80 L200 230"/><path id="o3" d="M260 80 L320 230"/><path id="o4" d="M260 80 L440 220"/></g>
+ <g class="o-pulse"><circle r="4"><animateMotion dur="2.4s" repeatCount="indefinite"><mpath href="#o1"/></animateMotion></circle><circle r="4"><animateMotion dur="2.4s" begin="-1.8s" repeatCount="indefinite"><mpath href="#o2"/></animateMotion></circle><circle r="4"><animateMotion dur="2.4s" begin="-1.2s" repeatCount="indefinite"><mpath href="#o3"/></animateMotion></circle><circle r="4"><animateMotion dur="2.4s" begin="-.6s" repeatCount="indefinite"><mpath href="#o4"/></animateMotion></circle>
+ <circle r="3" class="back"><animateMotion dur="2.4s" begin="-1.2s" repeatCount="indefinite" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#o1"/></animateMotion></circle><circle r="3" class="back"><animateMotion dur="2.4s" begin="0s" repeatCount="indefinite" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#o4"/></animateMotion></circle></g>
+ <g class="o-node chef"><rect x="160" y="44" width="200" height="56" rx="12"/><text x="260" y="70" text-anchor="middle">Chef d'orchestre</text><text x="260" y="88" text-anchor="middle" class="s">découpe · délègue · vérifie</text></g>
+ <g class="o-node"><rect x="20" y="214" width="120" height="50" rx="10"/><text x="80" y="236" text-anchor="middle">Recherche</text><text x="80" y="253" text-anchor="middle" class="s">son contexte</text></g>
+ <g class="o-node"><rect x="145" y="226" width="110" height="50" rx="10"/><text x="200" y="248" text-anchor="middle">Analyse</text><text x="200" y="265" text-anchor="middle" class="s">un résumé</text></g>
+ <g class="o-node"><rect x="265" y="226" width="110" height="50" rx="10"/><text x="320" y="248" text-anchor="middle">Rédaction</text><text x="320" y="265" text-anchor="middle" class="s">un résumé</text></g>
+ <g class="o-node"><rect x="380" y="214" width="120" height="50" rx="10"/><text x="440" y="236" text-anchor="middle">Contrôle</text><text x="440" y="253" text-anchor="middle" class="s">évalue</text></g>
+</svg></div>
+      <aside class="pats-side" aria-labelledby="pats-t"><p class="label case" id="pats-t">Cinq schémas d'orchestration</p><ul class="pats"><li><svg class="mn" viewBox="0 0 100 60" aria-hidden="true"><circle cx="15" cy="30" r="7"/><circle cx="50" cy="30" r="7"/><circle cx="85" cy="30" r="7"/><path d="M22 30h21M57 30h21"/></svg><h4>Séquentiel</h4><p>A, puis B, puis C. Simple, prévisible, idéal pour un processus connu.</p></li><li><svg class="mn" viewBox="0 0 100 60" aria-hidden="true"><circle cx="15" cy="30" r="7"/><circle cx="50" cy="10" r="6"/><circle cx="50" cy="30" r="6"/><circle cx="50" cy="50" r="6"/><circle cx="85" cy="30" r="7"/><path d="M21 27l23-15M22 30h22M21 33l23 15M56 12l23 15M56 30h22M56 48l23-15"/></svg><h4>Parallèle</h4><p>Plusieurs agents explorent en même temps, une synthèse rassemble.</p></li><li><svg class="mn" viewBox="0 0 100 60" aria-hidden="true"><circle cx="15" cy="30" r="7"/><path d="M22 30h14l14-18h20M36 30h34M36 30l14 18h20"/><circle cx="80" cy="12" r="6"/><circle cx="80" cy="30" r="6"/><circle cx="80" cy="48" r="6"/></svg><h4>Routeur</h4><p>Un premier agent oriente chaque demande vers le bon spécialiste.</p></li><li><svg class="mn" viewBox="0 0 100 60" aria-hidden="true"><circle cx="50" cy="12" r="8"/><circle cx="20" cy="48" r="6"/><circle cx="50" cy="48" r="6"/><circle cx="80" cy="48" r="6"/><path d="M45 19 24 42M50 20v22M55 19l21 23"/></svg><h4>Chef d&#x27;orchestre</h4><p>Un agent découpe l&#x27;objectif, délègue, puis vérifie et assemble.</p></li><li><svg class="mn" viewBox="0 0 100 60" aria-hidden="true"><circle cx="25" cy="30" r="9"/><circle cx="75" cy="30" r="9"/><path d="M34 24c10-8 22-8 32 0M66 36c-10 8-22 8-32 0"/></svg><h4>Évaluateur</h4><p>L&#x27;un produit, l&#x27;autre critique, en boucle jusqu&#x27;au seuil de qualité.</p></li></ul></aside>
+    </div>
+    <div class="tp-notes"><p><b>À retenir.</b> Plus de puissance sur les tâches ouvertes, mais plus de tokens et moins de prévisibilité : on commence simple.</p><p><b>Attention.</b> Plusieurs agents qui se parlent sans cadre, c&#x27;est plusieurs fois plus de tokens et des erreurs qui se propagent.</p></div>
+  </div>
+</div></section>
+<section id="accompagnement" aria-labelledby="s-title"><div class="wrap">
+  <div class="sec-head"><p class="label">Ce que je fais pour vous</p><h2 id="s-title">Du conseil au système qui tourne</h2>
+  <p>Je ne mise pas sur un outil, je mise sur une méthode de choix, pour que votre environnement survive aux effets de mode. Puis je conçois et développe avec vous.</p></div>
+  <div class="offer"><div class="card"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m16.24 7.76-2.12 6.36-6.36 2.12 2.12-6.36z"/></svg><h3>Choisir les bons outils</h3><p>Assistants, génération visuelle, assistants de code, automatisation : je vous aide à arbitrer selon votre contexte, pas selon les effets de mode.</p></div><div class="card"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><path d="M7 10v4a3 3 0 0 0 3 3h4"/></svg><h3>Concevoir vos chaînes d&#x27;agents</h3><p>Cartographie du processus, rôle de chaque agent, skills, visas humains, puis développement avec Claude, Claude Code et GitHub Copilot.</p></div><div class="card"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22v-5M9 8V2M15 8V2M18 8v5a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V8Z"/></svg><h3>Développer vos MCP sur mesure</h3><p>Brancher l&#x27;IA sur vos vraies données : lecture seule par défaut, contrôle fin des accès, journalisation des actions.</p></div><div class="card"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg><h3>Sécuriser et mettre en conformité</h3><p>Harnais, évaluations, suivi des coûts, et les pratiques de l&#x27;IA Act intégrées dès la conception.</p></div></div>
+  <ul class="tools" aria-label="Familles d'outils"><li><b>Assistants conversationnels</b><span>ChatGPT, Claude, Gemini, Le Chat</span></li><li><b>Génération visuelle</b><span>Midjourney, Flux, Veo, Runway</span></li><li><b>Assistants de code</b><span>Claude Code, GitHub Copilot, Cursor</span></li><li><b>Automatisation</b><span>n8n, Make, Zapier</span></li></ul>
+</div></section><section id="methode" class="meth" style="scroll-margin-top:var(--hd-h)" aria-labelledby="m-t"><div class="wrap">
+  <div class="sec-head"><p class="label">Méthode</p><h2 id="m-t">Méthodologie de développement d'un workflow agentique</h2><p>Je l'aborde avec la rigueur d'un protocole de recherche : une hypothèse, des étapes claires, des mesures à chaque palier. Un workflow agentique n'est jamais « fini » : chaque dérive observée en production renforce le cadre.</p></div>
+  <div class="cy-grid"><div class="cy-wrap"><svg class="cyc" viewBox="-110 -10 740 540" role="group" aria-label="Cycle en six étapes">
+<defs><marker id="ar" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 10 5 0 10z" fill="#67E8F9"/></marker></defs>
+<circle cx="260" cy="260" r="190" class="ring"/><path class="arc" d="M302.7 74.9 A190 190 0 0 1 399.0 130.4" marker-end="url(#ar)"/><path class="arc" d="M441.7 204.4 A190 190 0 0 1 441.7 315.6" marker-end="url(#ar)"/><path class="arc" d="M399.0 389.6 A190 190 0 0 1 302.7 445.1" marker-end="url(#ar)"/><path class="arc" d="M217.3 445.1 A190 190 0 0 1 121.0 389.6" marker-end="url(#ar)"/><path class="arc" d="M78.3 315.6 A190 190 0 0 1 78.3 204.4" marker-end="url(#ar)"/><defs><marker id="arP" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 10 5 0 10z" fill="#F9A8D4"/></marker><path id="bk" d="M149.7 173.8 A140 140 0 0 1 370.3 173.8"/></defs><use href="#bk" class="arc back" marker-end="url(#arP)"/><text class="bk-t" dy="-8"><textPath href="#bk" startOffset="50%" text-anchor="middle">retour d’expérience</textPath></text>
+<g class="hub"><circle cx="260" cy="260" r="92" class="hub-c"/><text x="260" y="246" text-anchor="middle" class="hub-l">AMÉLIORATION</text><text x="260" y="266" text-anchor="middle" class="hub-l">CONTINUE</text>
+<text x="260" y="294" text-anchor="middle" class="hub-s">chaque dérive</text><text x="260" y="312" text-anchor="middle" class="hub-s">devient une règle</text></g>
+<circle r="6" class="runner"><animateMotion dur="9s" repeatCount="indefinite" path="M424.5 165.0 A190 190 0 1 1 95.5 165.0 L149.7 173.8 A140 140 0 0 1 370.3 173.8 Z"/></circle>
+<g class="cn" data-i="0" transform="translate(260.0 70.0)" tabindex="0" role="button" aria-label="Étape 1 : Cadrer">
+<circle r="30" class="cn-c"/><text class="cn-n" y="6" text-anchor="middle">01</text>
+<text class="cn-t" x="0.0" y="-44.0" text-anchor="middle">Cadrer</text></g><g class="cn" data-i="1" transform="translate(424.5 165.0)" tabindex="0" role="button" aria-label="Étape 2 : Concevoir">
+<circle r="30" class="cn-c"/><text class="cn-n" y="6" text-anchor="middle">02</text>
+<text class="cn-t" x="42.0" y="6.0" text-anchor="start">Concevoir</text></g><g class="cn" data-i="2" transform="translate(424.5 355.0)" tabindex="0" role="button" aria-label="Étape 3 : Outiller le contexte">
+<circle r="30" class="cn-c"/><text class="cn-n" y="6" text-anchor="middle">03</text>
+<text class="cn-t" x="42.0" y="6.0" text-anchor="start"><tspan x="42.0" dy="-0.55em">Outiller le</tspan><tspan x="42.0" dy="1.15em">contexte</tspan></text></g><g class="cn" data-i="3" transform="translate(260.0 450.0)" tabindex="0" role="button" aria-label="Étape 4 : Harnacher">
+<circle r="30" class="cn-c"/><text class="cn-n" y="6" text-anchor="middle">04</text>
+<text class="cn-t" x="0.0" y="52.0" text-anchor="middle">Harnacher</text></g><g class="cn" data-i="4" transform="translate(95.5 355.0)" tabindex="0" role="button" aria-label="Étape 5 : Boucler et évaluer">
+<circle r="30" class="cn-c"/><text class="cn-n" y="6" text-anchor="middle">05</text>
+<text class="cn-t" x="-42.0" y="6.0" text-anchor="end"><tspan x="-42.0" dy="-0.55em">Boucler et</tspan><tspan x="-42.0" dy="1.15em">évaluer</tspan></text></g><g class="cn" data-i="5" transform="translate(95.5 165.0)" tabindex="0" role="button" aria-label="Étape 6 : Mettre en production">
+<circle r="30" class="cn-c"/><text class="cn-n" y="6" text-anchor="middle">06</text>
+<text class="cn-t" x="-42.0" y="6.0" text-anchor="end"><tspan x="-42.0" dy="-0.55em">Mettre en</tspan><tspan x="-42.0" dy="1.15em">production</tspan></text></g></svg></div><div class="cy-panel" aria-live="polite"><div class="dt" data-i="0" >
+  <p class="label">Étape 1 sur 6</p><h3>Cadrer</h3><p class="dt-s">Le bon problème, le bon retour sur investissement, et ce qui ne doit jamais arriver.</p>
+  <div class="dt-cols"><div><p class="label">Livrables</p><ul class="liv"><li>Fiche de cadrage et indicateurs de succès</li><li>Liste des cinq choses qui ne doivent jamais arriver</li><li>Décision : agent, script ou simple prompt ?</li></ul></div>
+  <div class="dt-q"><p class="label">La question clé</p><p class="q">« Un agent est-il vraiment la bonne réponse ? »</p><p class="gate"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span><b>Porte de sortie :</b> Go / no go du sponsor</span></p></div></div>
+</div><div class="dt" data-i="1" hidden>
+  <p class="label">Étape 2 sur 6</p><h3>Concevoir</h3><p class="dt-s">Chaîne ou orchestration, rôle de chaque agent, place des visas humains.</p>
+  <div class="dt-cols"><div><p class="label">Livrables</p><ul class="liv"><li>Schéma de la chaîne ou de l&#x27;orchestration</li><li>Fiche de poste de chaque agent</li><li>Carte des visas humains</li></ul></div>
+  <div class="dt-q"><p class="label">La question clé</p><p class="q">« Qui fait quoi, et où l&#x27;humain valide-t-il ? »</p><p class="gate"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span><b>Porte de sortie :</b> Validation du schéma par le métier</span></p></div></div>
+</div><div class="dt" data-i="2" hidden>
+  <p class="label">Étape 3 sur 6</p><h3>Outiller le contexte</h3><p class="dt-s">Instructions, skills, connecteurs et MCP : chaque information à sa place.</p>
+  <div class="dt-cols"><div><p class="label">Livrables</p><ul class="liv"><li>Instructions de chaque agent</li><li>Skills et documents de référence</li><li>Connecteurs et MCP, en lecture seule par défaut</li></ul></div>
+  <div class="dt-q"><p class="label">La question clé</p><p class="q">« Chaque agent a-t-il juste ce qu&#x27;il faut sous les yeux ? »</p><p class="gate"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span><b>Porte de sortie :</b> Revue des accès aux données</span></p></div></div>
+</div><div class="dt" data-i="3" hidden>
+  <p class="label">Étape 4 sur 6</p><h3>Harnacher</h3><p class="dt-s">Permissions, hooks, bac à sable : les consignes deviennent des garanties.</p>
+  <div class="dt-cols"><div><p class="label">Livrables</p><ul class="liv"><li>Règles autorisé, à demander, interdit</li><li>Hooks avant et après les actions sensibles</li><li>Bac à sable : fichiers et réseau cloisonnés</li></ul></div>
+  <div class="dt-q"><p class="label">La question clé</p><p class="q">« Qu&#x27;est-ce qui est garanti, quoi qu&#x27;il arrive ? »</p><p class="gate"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span><b>Porte de sortie :</b> Test de contournement réussi</span></p></div></div>
+</div><div class="dt" data-i="4" hidden>
+  <p class="label">Étape 5 sur 6</p><h3>Boucler et évaluer</h3><p class="dt-s">Critères vérifiables, jeux de tests, seuils de qualité et de coût.</p>
+  <div class="dt-cols"><div><p class="label">Livrables</p><ul class="liv"><li>Jeu d&#x27;évaluation représentatif</li><li>Seuils de qualité, d&#x27;hallucination et de coût</li><li>Budget de tours et de tokens par agent</li></ul></div>
+  <div class="dt-q"><p class="label">La question clé</p><p class="q">« Comment sait-on que c&#x27;est fini, et bien fait ? »</p><p class="gate"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span><b>Porte de sortie :</b> Seuils atteints sur le jeu d&#x27;évaluation</span></p></div></div>
+</div><div class="dt" data-i="5" hidden>
+  <p class="label">Étape 6 sur 6</p><h3>Mettre en production</h3><p class="dt-s">Suivi des résultats et des tokens ; chaque dérive devient une règle.</p>
+  <div class="dt-cols"><div><p class="label">Livrables</p><ul class="liv"><li>Tableau de suivi qualité et coût par tâche</li><li>Journal des incidents et des dérives</li><li>Nouvelles règles ajoutées au harnais</li></ul></div>
+  <div class="dt-q"><p class="label">La question clé</p><p class="q">« Que fait-on quand ça dérive ? »</p><p class="gate"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span><b>Porte de sortie :</b> Revue mensuelle des dérives</span></p></div></div>
+</div>
+  <div class="cy-nav"><button type="button" class="btn btn-line prev">Étape précédente</button><button type="button" class="btn btn-grad next">Étape suivante <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="width:18px;height:18px"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div></div></div>
+</div></section><section aria-labelledby="fo-title"><div class="wrap">
+  <div class="sec-head"><p class="label">Se former</p><h2 id="fo-title">Trois niveaux de formation, avec leurs fiches mémo</h2>
+  <p>Chaque notion de cette page a sa fiche mémo d'une page, remise en formation : définition, mise en pratique, avantages, limites.</p></div>
+  <div class="trainings three"><a class="tr" href="formations.html"><div class="tr-top"><span>Niveau 1</span><span>Les bases</span></div><h3>Comprendre et bien utiliser</h3><p>Les mots qui reviennent dans toutes les réunions, et les réflexes qui suffisent à 80 % des usages.</p></a><a class="tr" href="formations.html"><div class="tr-top"><span>Niveau 2</span><span>Les agents</span></div><h3>Concevoir des agents</h3><p>Passer de l&#x27;assistant qui répond au collaborateur qui agit : contexte, chaînes, orchestration, budget.</p></a><a class="tr" href="formations.html"><div class="tr-top"><span>Niveau 3</span><span>La production</span></div><h3>Industrialiser en confiance</h3><p>Ce qui fait tenir un système d&#x27;agents dans la durée : un cadre, des boucles vérifiées, la conformité.</p></a></div>
+</div></section><section id="ia-act" aria-labelledby="a-title"><div class="wrap">
+  <div class="sec-head"><p class="label">Cadre</p><h2 id="a-title">IA Act : dix piliers pour les équipes techniques</h2>
+  <p>La conformité se gagne dans le code, les données et le run, pas seulement dans les documents. Je vous aide à l'intégrer dès la conception.</p></div>
+  <ol class="act"><li><b>01</b><h3>Inventaire et classification</h3><p>Tous les systèmes, y compris via API ; rôle et niveau de risque.</p></li><li><b>02</b><h3>Risques by design</h3><p>Processus continu, tests avec seuils prédéfinis.</p></li><li><b>03</b><h3>Données et biais</h3><p>Provenance documentée, jeux représentatifs, biais atténués.</p></li><li><b>04</b><h3>Documentation et logs</h3><p>Doc technique à jour, journaux conservés au moins 6 mois.</p></li><li><b>05</b><h3>Contrôle humain</h3><p>Pouvoir ignorer, inverser, arrêter : le kill switch.</p></li><li><b>06</b><h3>Robustesse et sécurité</h3><p>Exactitude mesurée, défense contre l&#x27;empoisonnement et les attaques adverses.</p></li><li><b>07</b><h3>Transparence</h3><p>« Vous parlez à une IA », marquage des contenus générés.</p></li><li><b>08</b><h3>Conformité</h3><p>Gestion de la qualité, déclaration UE, marquage CE, enregistrement.</p></li><li><b>09</b><h3>Modèles à usage général</h3><p>Exploiter la documentation amont, propager les obligations.</p></li><li><b>10</b><h3>MLOps de conformité</h3><p>Surveillance post-marché, incidents graves, modifications substantielles.</p></li></ol>
+  <p class="fine">Repères tirés du règlement (UE) 2024/1689. Ne constitue pas un avis juridique.</p>
+</div></section><section class="cta"><div class="wrap">
+  <p class="label">Parlons-en</p><h2>Un projet IA en tête ? Ou juste des questions ?</h2>
+  <p>Faisabilité, priorités, premiers pas : on y voit clair ensemble. Sans engagement, et sans jargon.</p>
+  <a class="btn btn-grad" href="contact.html">Réserver un échange <svg class="ico" viewBox="0 0 24 24" aria-hidden="true" style="width:18px;height:18px"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+</div></section>
 </main>
 <footer class="site-footer"><div class="wrap">
   <span>© <span data-year>2026</span> Margot Libralato</span>
   <nav aria-label="Pied de page"><a href="../pages/cv.html">Parcours et CV</a><a href="../pages/formations.html">Formations</a><a href="../pages/contact.html">Contact</a><a href="https://www.linkedin.com/in/margot-libralato" rel="noopener">LinkedIn</a></nav>
   <span class="mail">libralato.margot@gmail.com</span>
 </div></footer>
-
-
-    
-    
-    <script src="../js/ia-generative.js"></script>
-
-<script>if(window.lucide)lucide.createIcons();</script>
 </body>
 </html>
